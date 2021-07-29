@@ -23,7 +23,7 @@ First, we need to import pandas and Plotly Express, and then read in our datafra
 import pandas as pd
 import plotly.express as px
 
-df = pd.read_csv("data/gapminder_tidy.csv")
+df = pd.read_csv("Data/gapminder_tidy.csv")
 df
 ~~~
 {: .language-python}
