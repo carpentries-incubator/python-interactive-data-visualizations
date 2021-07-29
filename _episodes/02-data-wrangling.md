@@ -46,7 +46,7 @@ We will start by importing pandas and reading in our data file. We can call the 
 
 ~~~
 import pandas as pd
-df = pd.read_csv("data/gapminder_all.csv")
+df = pd.read_csv("Data/gapminder_all.csv")
 df
 ~~~
 {: .language-python}
