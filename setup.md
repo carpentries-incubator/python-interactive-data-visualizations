@@ -2,13 +2,21 @@
 title: Setup
 ---
 
-## Getting the Data
+## Getting the Files
 
-The data we will be using is taken from the [gapminder][gapminder] dataset.
-To obtain it, download and unzip the file
-[python-novice-gapminder-data.zip]({{page.root}}/files/python-novice-gapminder-data.zip).
-In order to follow the presented material, you should launch the JupyterLab
-server in the root directory (see [Starting JupyterLab](http://swcarpentry.github.io/python-novice-gapminder/01-run-quit/#starting-jupyterlab)).
+The dataset we will be using is taken from the [gapminder][gapminder] dataset, 
+just like the [Plotting and Programming in Python](http://swcarpentry.github.io/python-novice-gapminder/) workshop.
+We will also be using a special environment, which can be recreated on your machine using [Anaconda][anaconda].
+To obtain the dataset and environment, download the file
+[data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip).
+Move this zipped file to your Desktop, and then double click the zipped file to unzip it.
+You should now have a folder called `data_viz_workshop`.
+
+> ## Create the environment before the workshop to save time
+> Your instructor may tell you to go ahead and create the `dataviz` environment in advance, and start the workshop from Episode 2 if time is short.
+> If so, then go ahead and  create the `dataviz` environment and open Jupyter Lab in the project root directory (`Desktop/data_viz_workshop`). 
+> Follow the directions in [Create a new environment]({{page.root}}/01-create-new-environment)).
+{: .callout}
 
 ## Installing Python Using Anaconda
 
