@@ -4,6 +4,10 @@ title: Setup
 
 ## Getting the Files
 
+> ## Click the link to download the file
+> [data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip)
+{: .callout}
+
 The dataset we will be using is taken from the [gapminder][gapminder] dataset, 
 just like the [Plotting and Programming in Python](http://swcarpentry.github.io/python-novice-gapminder/) workshop.
 We will also be using a special environment, which can be recreated on your machine using [Anaconda][anaconda].

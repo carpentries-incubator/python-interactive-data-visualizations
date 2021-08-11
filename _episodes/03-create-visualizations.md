@@ -1,6 +1,6 @@
 ---
 title: "Create Visualizations"
-teaching: 15
+teaching: 10
 exercises: 0
 questions:
 - "How can I create an interactive visualization using Plotly Express?"
@@ -14,6 +14,13 @@ keypoints:
 ---
 
 Now that our data is in a tidy format, we can start creating some visualizations. Let's start by creating a new notebook (make sure to select the `dataviz` kernel in the Launcher) and renaming it `data_visualizations.ipynb`.
+
+Let's make our first cell into a markdown cell, and give this notebook a title:
+
+~~~
+# Data Visualizations
+~~~
+{: .source}
 
 ## Import our newly tidy data
 
