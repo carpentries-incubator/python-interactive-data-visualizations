@@ -121,7 +121,7 @@ df_final
 Finally, we will export the dataframe to a CSV file.
 
 ~~~
-df_final.to_csv("data/gapminder_tidy.csv", index=False)
+df_final.to_csv("Data/gapminder_tidy.csv", index=False)
 ~~~
 {: .language-python}
 
