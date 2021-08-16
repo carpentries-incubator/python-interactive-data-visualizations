@@ -11,10 +11,11 @@ title: Setup
 The dataset we will be using is taken from the [gapminder][gapminder] dataset, 
 just like the [Plotting and Programming in Python](http://swcarpentry.github.io/python-novice-gapminder/) workshop.
 We will also be using a special environment, which can be recreated on your machine using [Anaconda][anaconda].
-To obtain the dataset and environment, download the file
-[data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip).
-Move this zipped file to your Desktop, and then double click the zipped file to unzip it.
-You should now have a folder called `data_viz_workshop`.
+
+To obtain the dataset and environment, download the file [data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip).
+If given the option, choose to Save File in your Desktop folder. If you are not given the option to choose where to save the file, then
+move this zipped file to your Desktop. Finally, double click the zipped file to unzip it.
+You should now have a folder called `data_viz_workshop`. If you open this folder, you will see a file called `environment.yml` and a folder called `Data`.
 
 > ## Create the environment before the workshop to save time
 > Your instructor may tell you to go ahead and create the `dataviz` environment in advance, and start the workshop from Episode 2 if time is short.

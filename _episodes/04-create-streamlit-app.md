@@ -19,11 +19,15 @@ keypoints:
 
 Now that our data and visualizations are prepped, it's finally time to create our Streamlit app.
 
-## Creating app.py
+## Creating and starting the app
 
 While you usually want to create Jupyter Notebooks in Jupyter Lab, you can also create other file types and have a terminal. We are going to use both of these capabilities.
 
-From the Launcher, click on "Text File" under "Other" (make sure you are currently in your project root directory, and not the `data` folder). This will open a new file. By default, this will be a text file, but you can change this. Go ahead and save this empty file as `app.py`. Then we can add some import statements, and save the file again.
+From the Launcher, click on "Text File" under "Other" (make sure you are currently in your project root directory, and not the `data` folder). This will open a new file. 
+
+![Open a Text File](../fig/open_text_file.png)
+
+By default, this will be a text file, but you can change this. Go ahead and save this empty file as `app.py` ("File" > "Save Text As..." > "app.py"). Then we can add some import statements, and save the file again.
 
 ~~~
 import streamlit as st
@@ -33,9 +37,55 @@ import plotly.express as px
 {: .language-python}
 
 Next, go back to the Launcher and click on "Terminal" under "Other". This will launch a terminal window within Jupyter Lab. 
+
+![Open a Terminal](../fig/open_terminal.png)
+
 If you type `pwd` and enter, you will see that you are currently in your project root. 
+
+~~~
+pwd
+~~~
+{: .language-bash}
+
+~~~
+/Users/<you>/Desktop/data_viz_workshop
+~~~
+{: .output}
+
 If you type `ls` and enter, you will see all of your files and directories. 
-Make sure that you see `app.py`. We can also see what environment we are currently in with `conda env list`. There should be a * next to `dataviz`. If not, go ahead and type `conda activate dataviz`. 
+
+~~~
+ls
+~~~
+{: .language-bash}
+
+~~~
+Data                      app.py                    data_visualizations.ipynb data_wrangling.ipynb      environment.yml
+~~~
+{: .output}
+
+Make sure that you see `app.py`. We can also see what environment we are currently in with `conda env list`. There should be a * next to `dataviz`. 
+
+~~~
+conda env list
+~~~
+{: .language-bash}
+
+~~~
+# conda environments:
+#
+base                     /opt/anaconda3
+dataviz               *  /opt/anaconda3/envs/dataviz
+~~~
+{: .output}
+
+If not, go ahead and type `conda activate dataviz`. 
+
+~~~
+conda activate dataviz
+~~~
+{: .language-bash}
+
 Now that we know we are in the right place and have the right environment (the one with streamlit installed), we are going to start the Streamlit app.
 
 ~~~
@@ -98,13 +148,15 @@ df_gdp_o = df.query("continent=='Oceania' & metric=='gdpPercap'")
 
 title = "GDP for countries in Oceania"
 fig = px.line(df_gdp_o, x = "year", y = "value", color = "country", title = title, labels={"value": "GDP Percap"})
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 ~~~
 {: .language-python}
 
 You know the drill! Save, switch over to the Streamlit app, and click "Rerun".
 
 We now have a web application that can allow you to share your interactive visualizations.
+
+![Streamlit app after this lesson](../fig/streamlit_app_lesson4fin.png)
 
 > ## Share your app online
 > Right now, our app only lives on our computer. Like Jupyter Lab, the app is displaying in a web browser but has the URL `localhost:####` (where #### represents the port number).
