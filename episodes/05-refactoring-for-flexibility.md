@@ -1,5 +1,5 @@
 ---
-title: "Refactoring code for flexiblity (prepping for widgets)"
+title: "Refactoring Code for Flexibility (Prepping for Widgets)"
 teaching: 15
 exercises: 0
 questions:
