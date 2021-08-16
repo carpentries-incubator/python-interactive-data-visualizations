@@ -15,7 +15,8 @@ This workshop lesson is an introduction to making interactive data visualization
 > 2. Learners should have Anaconda installed on their machines, as specified in the [setup for Plotting and Programming in Python](http://swcarpentry.github.io/python-novice-gapminder/setup.html).
 > 3. Learners should be comfortable with using the command line.
 > 4. Learners should have a Jupyter Lab & Streamlit compatible web browser installed (Google Chrome, Firefox, or Safari).
-> 5. (Optional) Learners should have a Streamlit Sharing account - [request one here](https://streamlit.io/sharing-sign-up) - if they wish to deploy and publish their visualization web app.
+> 5. Learners should have downloaded the required files ([data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip)) as specified in the [Setup](setup.md)
+> 6. (Optional) Learners can request a Streamlit Sharing account - [request one here](https://streamlit.io/sharing-sign-up) - if they wish to deploy and publish their visualization web app.
 {: .prereq}
 
 [anaconda]: https://www.anaconda.com/

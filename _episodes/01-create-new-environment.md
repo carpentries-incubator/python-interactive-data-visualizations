@@ -1,5 +1,5 @@
 ---
-title: "Create a new environment"
+title: "Create a New Environment"
 teaching: 10
 exercises: 0
 questions:
@@ -21,6 +21,7 @@ This workshop utilizes some Python packages (such as Plotly) that cannot be inst
 * jupyterlab
 
 ### A note about anaconda
+#### [XKCD #1987](https://xkcd.com/1987/): Python Environment
 
 ![XKCD 1987: Python Environment](../fig/xkcd_python_environment.png)
 
