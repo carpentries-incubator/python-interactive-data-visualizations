@@ -22,6 +22,8 @@ Let's make our first cell into a markdown cell, and give this notebook a title:
 ~~~
 {: .source}
 
+Remember to also add some metadata and describe what this notebook does.
+
 ## Import our newly tidy data
 
 First, we need to import pandas and Plotly Express, and then read in our dataframe.
@@ -54,7 +56,7 @@ df.query("country=='New Zealand'")
 This will select all of the rows where `country` is "New Zealand". We can add our second condition by either chaining another `query()` function or specifying the additional condition in the same `query()` function.
 
 ~~~
-df.query("country=='New Zealand'").query("metric=='gdpPercap")
+df.query("country=='New Zealand'").query("metric=='gdpPercap'")
 df.query("country=='New Zealand' & metric=='gdpPercap'")
 ~~~
 {: .language-python}
@@ -74,9 +76,12 @@ fig.show()
 ~~~
 {: .language-python}
 
+![Plot of New Zealand's GDP over time](../fig/L3_firstplot.png)
+
 There it is! Our first line plot.
 
-## When you want multiple lines
+
+## When you want to compare - adding more lines and labels
 
 By itself, this plot of New Zealand's GDP isn't especially interesting. Let's add another line, to compare it to Australia.
 
@@ -96,6 +101,9 @@ fig.show()
 ~~~
 {: .language-python}
 
+![Plot of Oceania's GDP over time](../fig/L3_secondplot.png)
+
+
 Great! This already looking better. But we should fix that y-axis label and add a title.
 
 ~~~
@@ -104,6 +112,8 @@ fig = px.line(df_gdp_o, x = "year", y = "value", color = "country", title = titl
 fig.show()
 ~~~
 {: .language-python}
+
+![Plot of Oceania's GDP over time with correct labels](../fig/L3_thirdplot.png)
 
 You can go ahead and experiment with creating different plots for the different continents and metrics.
 

@@ -65,6 +65,12 @@ print(new_query)
 ~~~
 {: .language-python}
 
+~~~
+continent=='Oceania' & metric=='gdpPercap'
+continent=='Oceania' & metric=='gdpPercap'
+~~~
+{: .output}
+
 Notice how the two strings are identical?
 
 The `new_query` variable is more flexible, because we can redefine the `continent` and `metric` variables. Go ahead and try it!
@@ -78,6 +84,11 @@ query = f"continent=='{continent}' & metric=='{metric}'"
 print(query)
 ~~~
 {: .language-python}
+
+~~~
+continent=='Europe' & metric=='pop'
+~~~
+{: .output}
 
 It's important to isolate these `continent` and `metric` values because we can adjust them with our widgets.
 
@@ -96,7 +107,11 @@ fig.show()
 ~~~
 {: .language-python}
 
-Do you notice any other places that we need to incorporate f-Strings? The title and axis lables!
+![Plot of Europe's population over time with wrong labels](../fig/L5_firstplot.png)
+
+Something about this plot is funky... do you notice any other places where we need to incorporate f-Strings? 
+
+The title and axis lables!
 
 ~~~
 continent = "Europe"
@@ -104,8 +119,17 @@ metric = "pop"
 
 title = f"{metric} for countries in {continent}"
 labels = {"value": f"{metric}"}
+
+print(title)
+print(labels["value"])
 ~~~
 {: .language-python}
+
+~~~
+pop for countries in Europe
+pop
+~~~
+{: .output}
 
 Let's show that plot again, with our updated code:
 
@@ -122,7 +146,9 @@ fig.show()
 ~~~
 {: .language-python}
 
-There's just one more thing to tweak. "gdpPercap", "lifeExp", and "pop" aren't the prettiest labels. Let's map them to more display-friendly labels with a dictionary. Then we can call on this dictionary within our f-strings
+![Plot of Europe's population over time with correct labels](../fig/L5_secondplot.png)
+
+There's just one more thing to tweak. "gdpPercap", "lifeExp", and "pop" aren't the prettiest labels. Let's map them to more display-friendly labels with a dictionary. Then we can call on this dictionary within our f-strings:
 
 ~~~
 metric_labels = {"gdpPercap": "GDP Per Capita", "lifeExp": "Average Life Expectancy", "pop": "Population"}
@@ -146,22 +172,38 @@ fig.show()
 ~~~
 {: .language-python}
 
+![Plot of Europe's population over time with better labels](../fig/L5_thirdplot.png)
+
 ## Getting lists of possible values
 
 There is one last step before we can be ready to create our widgets. We need a list of all continents and all metrics, so that users can select from valid options. To do this, we will use pandas' `unique()` function.
 
 ~~~
-df['continents'].unique()
+df['continent'].unique()
 ~~~
 {: .language-python}
+
+~~~
+array(['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'], dtype=object)
+~~~
+{: .output}
 
 See how we get every possible value in the `continents` column exactly once? Let's define this as a list, assign it to a variable, and do the same thing for `metric`.
 
 ~~~
 continent_list = list(df['continent'].unique())
 metric_list = list(df['metric'].unique())
+
+print(continent_list)
+print(metric_list)
 ~~~
 {: .language-python}
+
+~~~
+['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+['gdpPercap', 'lifeExp', 'pop']
+~~~
+{: .output}
 
 These lists will be used when defining our widgets.
 
@@ -196,6 +238,7 @@ st.plotly_chart(fig, use_container_width=True)
 ~~~
 {: .language-python}
 
+![Streamlit app after this lesson](../fig/streamlit_app_lesson5fin.png)
 
 {% include links.md %}
 

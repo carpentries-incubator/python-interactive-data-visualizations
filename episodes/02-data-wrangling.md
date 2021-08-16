@@ -30,6 +30,8 @@ We are going take this very wide dataset and make it very long, so the unit of o
 Let's go ahead and get started by opening a Jupyter Notebook with the `dataviz` kernel. If you navigated to the `Data` folder to look at the CSV file, navigate back to the root before opening the new notebook. 
 We are also going to rename this new notebook to `data_wrangling.ipynb`.
 
+![Jupyter Lab - Notebooks - dataviz kernel](../fig/jupyter_lab_dataviz_notebook.png)
+
 Jupyter Notebooks are very handy because we can combine documentation (markdown cells) with our program (code cells) in a reader-friendly way.
 Let's make our first cell into a markdown cell, and give this notebook a title:
 
@@ -84,7 +86,7 @@ cols
 Now, we can call `pd.melt()` and pass `cols` rather than typing out the whole list.
 
 ~~~
-df_melted = pd.melt(df, id_vars=['country', 'continent'], value_vars = cols
+df_melted = pd.melt(df, id_vars=['country', 'continent'], value_vars = cols)
 df_melted
 ~~~
 {: .language-python}
@@ -107,6 +109,25 @@ df_melted
 ~~~
 {: .language-python}
 
+Take a moment to compare this dataframe to the one we started with. What are some advantages to having the data in this format?
+
+> ## Tidy Data
+> The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
+> You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
+>
+> Tidy data follows 3 rules:
+> 1. Each variable forms a column
+> 2. Each observation forms a row
+> 3. Each type of observational unit forms a table
+>
+> Wickham later refined and revised the tidy data philosophy, and published it in the 12th chapter of his open access textbook "R for Data Science" - available [here](https://r4ds.had.co.nz/tidy-data.html). 
+>
+> The revised rules are:
+> 1. Each variable must have its own column
+> 2. Each observation must have its own row
+> 3. Each value must have its own cell
+{: .callout}
+
 ## Saving the final dataframe
 
 Now that all of our columns contain the appropriate information, in a tidy/long format, it's time to save our dataframe back to a CSV file. But first, we're going to re-order our columns (and remove the now extra `variable` column) and sort the rows.
@@ -125,6 +146,7 @@ df_final.to_csv("Data/gapminder_tidy.csv", index=False)
 ~~~
 {: .language-python}
 
+We set the index to False so that the index column does not get saved to the CSV file.
 
 {% include links.md %}
 
