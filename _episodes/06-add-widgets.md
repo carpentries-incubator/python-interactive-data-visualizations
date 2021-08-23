@@ -171,5 +171,72 @@ Save, Rerun, and... Share!
 
 ![Final Streamlit app](../fig/streamlit_app_lesson6_3.png)
 
+## Exercises
+
+> ## Show me the data! (If the user wants it)
+> After the plot is displayed, also display the dataframe used to generate the plot.
+>
+> Use a widget so that the user can decide whether to display the data. 
+> 
+> (Hint: look at the checkbox!)
+> > ## Solution
+> > ~~~
+> > with st.sidebar:
+> >     show_data = st.checkbox(label = "Show the data used to generate this plot", value = False)
+> > 
+> > if show_data:
+> >     st.dataframe(df_filtered)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Limit the countries displayed in the plot
+> Add a widget that allows users to limit the countries that will be displayed on the plot.
+> 
+> (Hint: look at the multiselect!)
+> > ## Solution
+> > ~~~
+> > countries_list = list(df_filtered['country'].unique())
+> > 
+> > with st.sidebar:
+> >     countries = st.multiselect(label = "Which countries should be plotted?", options = countries_list, default = countries_list)
+> > 
+> > df_filtered = df_filtered[df_filtered.country.isin(countries)]
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Limit the dates displayed in the plot
+> Add a widget that allows users to limit the range of years that will be displayed on the plot.
+> 
+> (Hint: look at the slider!)
+> > ## Solution
+> > ~~~
+> > year_min = int(df_filtered['year'].min())
+> > year_max = int(df_filtered['year'].max())
+> >
+> > with st.sidebar:
+> >     years = st.slider(label = "What years should be plotted?", min_value = year_min, max_value = year_max, value = (year_min, year_max))
+> >
+> > df_filtered = df_filtered[(df_filtered.year >= years[0]) & (df_filtered.year <= years[1])]
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Improve the description
+> After the plot is displayed, add some text describing the plot. 
+>
+> This time, add more to the description based on the information specified by the newly added widgets.
+> > ## Solution
+> > ~~~
+> > st.markdown(f"This plot shows the {metric_labels[metric]} from {years[0]} to {years[1]} for the following countries in {continent}: {', '.join(countries)}")
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
 {% include links.md %}
 

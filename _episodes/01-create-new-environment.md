@@ -29,6 +29,12 @@ Python can live in many different places on your computer, and each source may h
 By using an anaconda environment that we create, and by explicitly using only that environment, we can avoid conflicts...
 and know exactly what environment is being used to run our python code. And we avoid the mess indicated by the above comic!
 
+> ## Reflecting on environment mishaps
+> Have you ever been unable to install a package due to a conflict?
+>
+> How did you solve the problem?
+{: .discussion}
+
 ## Create an environment from the `environment.yml` file
 
 The necessary packages are specified in the `environment.yml` file. 
@@ -115,6 +121,13 @@ Finally, we can go ahead and start Jupyter Lab
 jupyter lab
 ~~~
 {: .language-bash}
+
+> ## Alternatives to Anaconda
+> Have you ever used a different solution for creating/managing virtual python environments?
+> For example, `pipenv` or `virtualenv`?
+>
+> How does conda differ from these solutions?
+{: .discussion}
 
 ## Create the environment from scratch
 

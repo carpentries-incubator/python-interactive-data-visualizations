@@ -165,6 +165,28 @@ We now have a web application that can allow you to share your interactive visua
 > Detailed instructions can be found in [Streamlit's Documentation](https://docs.streamlit.io/en/stable/deploy_streamlit_app.html)
 {: .callout}
 
+## Exercises
+
+> ## Add a description
+> After the plot is displayed, add some text describing the plot.
+> > ## Solution
+> > ~~~
+> > st.plotly_chart(fig, use_container_width=True) # this line is already in the app
+> > st.markdown("This plot shows the GDP Per Capita for countries in Oceania.")
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Show me the data!
+> After the plot is displayed, also display the dataframe used to generate the plot.
+> > ## Solution
+> > ~~~
+> > st.dataframe(df_gdp_o) # df_gdp_o is defined in the code created in this lesson
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 {% include links.md %}
 

@@ -10,7 +10,7 @@ questions:
 objectives:
 - "Learn useful pandas functions for wrangling data into a tidy format"
 keypoints:
-- "Import your CSV using `pd.read_csv('<FILEPATH>')"
+- "Import your CSV using `pd.read_csv('<FILEPATH>')`"
 - "Transform your dataframe from wide to long with `pd.melt()`"
 - "Split column values with `df['<COLUMN>'].str.split('<DELIM>')`"
 - "Sort rows using `df.sort_values()`"
@@ -24,6 +24,23 @@ We want to visualize the data in `gapminder_all.csv`. However, this dataset is i
 You can click on the `Data` folder and double click on `gapminder_all.csv` to view this file within Jupyter Lab.
 
 We are going take this very wide dataset and make it very long, so the unit of observation will be each country + year + metric combination, rather than just the country. This process is made much simpler by a couple of functions in the `pandas` library.
+
+> ## Tidy Data
+> The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
+> You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
+>
+> Tidy data follows 3 rules:
+> 1. Each variable forms a column
+> 2. Each observation forms a row
+> 3. Each type of observational unit forms a table
+>
+> Wickham later refined and revised the tidy data philosophy, and published it in the 12th chapter of his open access textbook "R for Data Science" - available [here](https://r4ds.had.co.nz/tidy-data.html). 
+>
+> The revised rules are:
+> 1. Each variable must have its own column
+> 2. Each observation must have its own row
+> 3. Each value must have its own cell
+{: .callout}
 
 ## Getting Started
 
@@ -109,24 +126,11 @@ df_melted
 ~~~
 {: .language-python}
 
-Take a moment to compare this dataframe to the one we started with. What are some advantages to having the data in this format?
-
-> ## Tidy Data
-> The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
-> You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
+> ## Wide vs long data
+> Take a moment to compare this dataframe to the one we started with. 
 >
-> Tidy data follows 3 rules:
-> 1. Each variable forms a column
-> 2. Each observation forms a row
-> 3. Each type of observational unit forms a table
->
-> Wickham later refined and revised the tidy data philosophy, and published it in the 12th chapter of his open access textbook "R for Data Science" - available [here](https://r4ds.had.co.nz/tidy-data.html). 
->
-> The revised rules are:
-> 1. Each variable must have its own column
-> 2. Each observation must have its own row
-> 3. Each value must have its own cell
-{: .callout}
+> What are some advantages to having the data in this format?
+{: .discussion}
 
 ## Saving the final dataframe
 
@@ -147,6 +151,20 @@ df_final.to_csv("Data/gapminder_tidy.csv", index=False)
 {: .language-python}
 
 We set the index to False so that the index column does not get saved to the CSV file.
+
+> ## Imagining other tidy ways to wrangle
+> We wrangled our data into a tidy form. However, there is no single "true tidy" form for any given dataset.
+>
+> What are some other ways you may wish to organize this dataset that are also tidy?
+> > ## For Example
+> > Instead of having a `metric` and `value` column, given that `metric` only has 3 values, 
+> > you could have a column each for `gdpPercap`, `lifeExp`, and `pop`. 
+> > 
+> > The values in each of those three columns would reflect the value of that metric for a given country in a given year.
+> > The columns in this dataset would be: `country`, `continent`, `year`, `gdpPercap`, `lifeExp`, and `pop`.
+> {: .solution}
+> How would you wrangle the original dataset into this other tidy form using pandas?
+{: .discussion}
 
 {% include links.md %}
 

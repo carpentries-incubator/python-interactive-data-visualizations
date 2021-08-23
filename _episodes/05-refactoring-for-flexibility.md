@@ -240,5 +240,33 @@ st.plotly_chart(fig, use_container_width=True)
 
 ![Streamlit app after this lesson](../fig/streamlit_app_lesson5fin.png)
 
+## Exercises
+
+> ## Add a (flexible) description
+> After the plot is displayed, add some text describing the plot. 
+>
+> This time, use F-strings so the description can change with the plot
+> > ## Solution
+> > ~~~
+> > st.markdown(f"This plot shows the {metric_labels[metric]} for countries in {continent}.")
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Show me the data! (Maybe)
+> After the plot is displayed, also display the dataframe used to generate the plot.
+>
+> This time, make it optional - only display the dataframe if a variable is set to True.
+> > ## Solution
+> > ~~~
+> > show_data = True
+> > if show_data:
+> >     st.dataframe(df_filtered)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
 {% include links.md %}
 

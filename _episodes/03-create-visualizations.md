@@ -115,13 +115,37 @@ fig.show()
 
 ![Plot of Oceania's GDP over time with correct labels](../fig/L3_thirdplot.png)
 
-You can go ahead and experiment with creating different plots for the different continents and metrics.
-
 > ## Interactivity is baked in to Plotly charts
 > When you have many more lines, the interactive features of Plotly become very useful. 
 > Notice how hovering over a line will tell you more information about that point. 
 > You will also see several options in the upper right corner to further interact with the plot - including saving it as a PNG file!
 {: .callout}
+
+## Exercises
+
+> ## Visualize Population in Europe
+> Create a plot that visualizes the population of countries in Europe over time.
+> > ## Solution
+> > ~~~
+> > df_pop_eu = df.query("continent=='Europe' & metric=='pop'")
+> > fig = px.line(df_pop_eu, x = "year", y = "value", color = "country", title = "Population in Europe", labels={"value": "Population"})
+> > fig.show()
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Visualize Average Life Expectancy in Asia
+> Create a plot that visualizes the average life expectancy of countries in Asia over time.
+> > ## Solution
+> > ~~~
+> > df_le_as = df.query("continent=='Asia' & metric=='lifeExp'")
+> > fig = px.line(df_le_as, x = "year", y = "value", color = "country", title = "Life Expectancy in Asia", labels={"value": "Average Life Expectancy"})
+> > fig.show()
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 {% include links.md %}
 
