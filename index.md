@@ -5,6 +5,12 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 This workshop lesson is an introduction to making interactive data visualizations in Python. Learners will create a new environment using [conda][anaconda], wrangle data into the proper format using [pandas][pandas] library, create visualizations using the [Plotly][plotly] Python library, and display these visualizations and create widgets using [Streamlit][streamlit].
 
+> ## Preview the app
+> For a preview of what learners will be creating in this lesson (including the exercises), click the "Open in Streamlit" button below. 
+> [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/jenna-jordan/interact-with-gapminder-data-app/main/app.py)
+> The repository that contains this example Streamlit app can be found [here](https://github.com/jenna-jordan/interact-with-gapminder-data-app).
+{: .callout}
+
 <!-- this is an html comment -->
 
 {% comment %} This is a comment in Liquid {% endcomment %}
