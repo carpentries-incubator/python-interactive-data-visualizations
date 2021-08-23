@@ -13,6 +13,6 @@ It is important to note that this lesson was designed to follow the [Plotting an
 
 ### See all of the code
 
-If you want to see all of the finished code as it should be after the lesson is completed (.ipynb and .py files), they are available [in the code folder](https://github.com/jenna-jordan/data-visualization-workshop/tree/gh-pages/code).
+If you want to see all of the finished code as it should be after the lesson is completed (.ipynb and .py files), they are available [in the code folder](https://github.com/carpentries-incubator/python-interactive-data-visualizations/tree/gh-pages/code).
 
 {% include links.md %}
