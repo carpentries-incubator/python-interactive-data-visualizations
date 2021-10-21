@@ -22,7 +22,9 @@ Humans benefit from visual representation of data to see patterns and plotting d
 
 > ## Our reliance on the visual?
 > When was the last time you saw a research paper without figures?
+
 > When reading research do you start with the figures?
+
 > How would the recent publications you have studied have made sense if you couldn't see the figures?
 {: .discussion}
 
@@ -35,18 +37,21 @@ Interactivity gives the reader/user a chance to explore the data in ways a stati
 ![Plotting can be used to enlighten, interactivity can allow exploration](../fig/plotting_power.png)
 
 > ## A wealth of choices for making figures in Python
-> This tutorial makes us of Plotly and Streamlit, but a range of options now exist for visualizing data in the Python ecosystem.  These are summariazed at [PyViz.org](https://pyviz.org/tools.html).
+> This tutorial makes us of Plotly and Streamlit, but a range of options now exist for visualizing data in the Python ecosystem.  
+
+> These are summariazed at [PyViz.org](https://pyviz.org/tools.html).
+
 > Many of the tools described are developed with specific use cases in mind, whereas others are intentionally more basic and adaptable. Some are focused on particular issues, such as choices of colour or aggregation of data. There is a lot here to explore...
 {: .callout}
 
 ### The steps for constructing our interactive data visualization
 
-    - Building your environment for analysis and plotting (in a way that can be repeated)
-    - Data processing and cleaning. 
-    - Separating out variables of interest.
-    - Identifying variables you may want to explore (and how best to map these to visual differences/dimensions).
-    - Visualizing the central data (choosing your plot types)
-    - Converting addtional choices in the visualization to widgets.
-    - Hosting a plot as an app (so it can be seen ad explored)
+    1. Building your environment for analysis and plotting (in a way that can be repeated)
+    2. Data processing and cleaning. 
+    3. Separating out variables of interest.
+    4. Identifying variables you may want to explore (and how best to map these to visual differences/dimensions).
+    5. Visualizing the central data (choosing your plot types)
+    6. Converting addtional choices in the visualization to widgets.
+    &. Hosting a plot as an app (so it can be seen ad explored)
 
 {% include links.md %}
