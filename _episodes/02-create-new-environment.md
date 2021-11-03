@@ -1,6 +1,6 @@
 ---
 title: "Create a New Environment"
-teaching: 10
+teaching: 20
 exercises: 0
 questions:
 - "How can I create a new conda environment?"

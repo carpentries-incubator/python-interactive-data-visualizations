@@ -23,6 +23,16 @@ You should now have a folder called `data_viz_workshop`. If you open this folder
 > Follow the directions in [Create a new environment]({{page.root}}/01-create-new-environment)).
 {: .callout}
 
+## Create a GitHub account (if you don't already have one)
+
+You can sign up for a GitHub account at [github.com/signup](https://github.com/signup)
+
+Make sure to choose a general purpose email that you are likely to still have access to in 5 years - that is, not an email tied to a specific workplace, university, or Internet Service Provider.
+
+Make sure to also choose an appropriate username that you are comfortable putting on your resume or sharing with colleagues - some variation of your name is a good idea.
+
+After you have a GitHub account, you should also download GitHub Desktop, so that you can clone, pull, and push without having to use the command line. You can download GitHub Desktop [here](https://desktop.github.com).
+
 ## Installing Python Using Anaconda
 
 {% include python_install.html %}
