@@ -1,7 +1,7 @@
 ---
 title: "Data Wrangling"
 teaching: 15
-exercises: 0
+exercises: 5
 questions:
 - "What format should my data be in for Plotly Express?"
 - "Why can't I use the data in its current format?"
@@ -26,17 +26,15 @@ You can click on the `Data` folder and double click on `gapminder_all.csv` to vi
 We are going take this very wide dataset and make it very long, so the unit of observation will be each country + year + metric combination, rather than just the country. This process is made much simpler by a couple of functions in the `pandas` library.
 
 > ## Tidy Data
-> The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
-> You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
 >
-> Tidy data follows 3 rules:
-> 1. Each variable forms a column
-> 2. Each observation forms a row
-> 3. Each type of observational unit forms a table
+> The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
+>
+> You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
 >
 > Wickham later refined and revised the tidy data philosophy, and published it in the 12th chapter of his open access textbook "R for Data Science" - available [here](https://r4ds.had.co.nz/tidy-data.html). 
 >
 > The revised rules are:
+>
 > 1. Each variable must have its own column
 > 2. Each observation must have its own row
 > 3. Each value must have its own cell
@@ -75,6 +73,7 @@ df
 The first function we are going to use to wrangle this dataset is `pd.melt()`. This function's entire purpose to to make wide dataframes into long dataframes.
 
 > ## Check out the documentation
+>
 > To learn more about `pd.melt()`, you can look at the function's [documentation](https://pandas.pydata.org/docs/reference/api/pandas.melt.html)
 > To see this documentation within Jupyter Lab, you can type `pd.melt()` in a cell and then hold down the shift + tab keys.
 > You can also open a "Show Contextual Help" window from the Launcher.
@@ -90,7 +89,6 @@ df.columns
 `pd.melt()` requires us to specify at least 3 arguments: the dataframe (`frame`), the "id" columns (`id_vars`) - that is, the columns that won't be "melted" - and the "value" columns (`value_vars`) - the columns that will be melted.
 
 Our "id" columns are `country` and `continent`. Our "value" columns are all of the rest. That's a lot of columns! But no worries - we can programmatically make a list of all of these columns.
-
 
 ~~~
 cols = list(df.columns)
@@ -109,6 +107,7 @@ df_melted
 {: .language-python}
 
 > ## New dataframe variable names
+>
 > When wrangling a dataframe in a Jupyter notebook, it's a good idea to assign transformed dataframes to a new variable name.
 > You don't have to do this with every transformation, but do try to do this with every substantial transformation.
 > This way, we don't have to re-run the entire notebook when we are experimenting with transformations on a dataframe.
@@ -127,6 +126,7 @@ df_melted
 {: .language-python}
 
 > ## Wide vs long data
+>
 > Take a moment to compare this dataframe to the one we started with. 
 >
 > What are some advantages to having the data in this format?
@@ -151,6 +151,8 @@ df_final.to_csv("Data/gapminder_tidy.csv", index=False)
 {: .language-python}
 
 We set the index to False so that the index column does not get saved to the CSV file.
+
+## Exercises
 
 > ## Imagining other tidy ways to wrangle
 > We wrangled our data into a tidy form. However, there is no single "true tidy" form for any given dataset.

@@ -1,7 +1,7 @@
 ---
 title: "Add Widgets to the Streamlit App"
-teaching: 10
-exercises: 0
+teaching: 15
+exercises: 15
 questions:
 - "Why do I want to have widgets in my app?"
 - "What kinds of widgets are there?"
@@ -23,6 +23,7 @@ We are going to add two widgets to our app. One widget will let us select the co
 You may have said "Dropdown box". In Streamlit, this is called a "Select box", and is created with `st.selectbox()`.
 
 > ## Look through the documentation for widget options
+>
 > Streamlit has many types of widgets available. You can see the documentation for them [here](https://docs.streamlit.io/en/stable/api.html#display-interactive-widgets)
 {: .callout}
 
@@ -174,6 +175,7 @@ Save, Rerun, and... Share!
 ## Exercises
 
 > ## Show me the data! (If the user wants it)
+>
 > After the plot is displayed, also display the dataframe used to generate the plot.
 >
 > Use a widget so that the user can decide whether to display the data. 
@@ -192,6 +194,7 @@ Save, Rerun, and... Share!
 {: .challenge}
 
 > ## Limit the countries displayed in the plot
+>
 > Add a widget that allows users to limit the countries that will be displayed on the plot.
 > 
 > (Hint: look at the multiselect!)
@@ -209,6 +212,7 @@ Save, Rerun, and... Share!
 {: .challenge}
 
 > ## Limit the dates displayed in the plot
+>
 > Add a widget that allows users to limit the range of years that will be displayed on the plot.
 > 
 > (Hint: look at the slider!)
@@ -227,6 +231,7 @@ Save, Rerun, and... Share!
 {: .challenge}
 
 > ## Improve the description
+>
 > After the plot is displayed, add some text describing the plot. 
 >
 > This time, add more to the description based on the information specified by the newly added widgets.

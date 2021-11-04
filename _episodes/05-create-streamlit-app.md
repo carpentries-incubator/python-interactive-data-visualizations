@@ -1,7 +1,7 @@
 ---
 title: "Create the Streamlit App"
-teaching: 10
-exercises: 0
+teaching: 15
+exercises: 5
 questions:
 - "How do I create a Streamlit app?"
 - "How can I see a live preview of my app?"
@@ -109,8 +109,9 @@ You can make this title whatever you want. Save the file, and go back to the bro
 We can add other text to our app with `st.write()` and other functions.
 
 > ## Check out the documentation
+>
 > Whenever you are working with a new library - or even one that you are familiar with! - it's a good idea to look through the documentation.
-> You can find Streamlit's documentation [here](https://docs.streamlit.io/en/stable/api.html#)
+> You can find Streamlit's documentation [here](https://docs.streamlit.io/library/api-reference)
 {: .callout}
 
 ## Add a plot to the app
@@ -158,16 +159,10 @@ We now have a web application that can allow you to share your interactive visua
 
 ![Streamlit app after this lesson](../fig/streamlit_app_lesson4fin.png)
 
-> ## Share your app online
-> Right now, our app only lives on our computer. Like Jupyter Lab, the app is displaying in a web browser but has the URL `localhost:####` (where #### represents the port number).
-> To easily make this app public and shared online, you can sign up for a [Streamlit Sharing](https://streamlit.io/sharing-sign-up) account. This will let you share up to 3 apps. 
-> All you need (in addition to an account) is to have your code in a public GitHub repo.
-> Detailed instructions can be found in [Streamlit's Documentation](https://docs.streamlit.io/en/stable/deploy_streamlit_app.html)
-{: .callout}
-
 ## Exercises
 
 > ## Add a description
+>
 > After the plot is displayed, add some text describing the plot.
 > > ## Solution
 > > ~~~
@@ -179,6 +174,7 @@ We now have a web application that can allow you to share your interactive visua
 {: .challenge}
 
 > ## Show me the data!
+>
 > After the plot is displayed, also display the dataframe used to generate the plot.
 > > ## Solution
 > > ~~~

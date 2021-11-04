@@ -1,7 +1,7 @@
 ---
 title: "Refactoring Code for Flexibility (Prepping for Widgets)"
-teaching: 15
-exercises: 0
+teaching: 20
+exercises: 5
 questions:
 - "How does the current code need to change in order to incorporate widgets?"
 - "What aspects of the code need to change?"
@@ -243,6 +243,7 @@ st.plotly_chart(fig, use_container_width=True)
 ## Exercises
 
 > ## Add a (flexible) description
+>
 > After the plot is displayed, add some text describing the plot. 
 >
 > This time, use F-strings so the description can change with the plot
@@ -255,6 +256,7 @@ st.plotly_chart(fig, use_container_width=True)
 {: .challenge}
 
 > ## Show me the data! (Maybe)
+>
 > After the plot is displayed, also display the dataframe used to generate the plot.
 >
 > This time, make it optional - only display the dataframe if a variable is set to True.

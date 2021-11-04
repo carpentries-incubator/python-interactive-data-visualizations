@@ -1,7 +1,7 @@
 ---
 title: "Publish Your Streamlit App"
 teaching: 20
-exercises: 0
+exercises: 30
 questions:
 - "How do I deploy my app so other people can see it?"
 - "How do I create a `requirements.txt` file?"
@@ -114,6 +114,26 @@ On the free Community tier, you can deploy up to 3 apps at once. If you later de
 When you have signed in to your Streamlit account, click "New app". Copy and paste your GitHub repo URL, for example `https://github.com/username/interact-with-gapminder-data-app`, specify the correct branch name (which is most likely `main`), and specify the filename of your app (`app.py`). Then click "Deploy", and wait for the balloons!
 
 You can read the documentation about this process for deploying an app [here](https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app).
+
+## Exercises
+
+> ## Add your own twist
+>
+> Now that you have successfully deployed the app we created together, it's time for you to add your own twist.
+>
+> You can add more visualizations, more widgets, or make use of Streamlit's other capabilities to add to and enhance the app. Make it your own!
+{: .challenge}
+
+> ## Share & Present Your Apps
+>
+> After everyone has had time to work on adding their own twist to their Streamlit apps, take some time to share your apps with each other and present what was added to the base app.
+>
+> What did you find challenging?
+>
+> What feature that you added did you most like?
+>
+> What is something else you would like to add in the future?
+{: .discussion}
 
 {% include links.md %}
 
