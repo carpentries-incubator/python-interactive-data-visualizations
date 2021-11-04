@@ -1,7 +1,7 @@
 ---
 title: "Create Visualizations"
-teaching: 10
-exercises: 0
+teaching: 15
+exercises: 5
 questions:
 - "How can I create an interactive visualization using Plotly Express?"
 objectives:
@@ -80,7 +80,6 @@ fig.show()
 
 There it is! Our first line plot.
 
-
 ## When you want to compare - adding more lines and labels
 
 By itself, this plot of New Zealand's GDP isn't especially interesting. Let's add another line, to compare it to Australia.
@@ -116,6 +115,7 @@ fig.show()
 ![Plot of Oceania's GDP over time with correct labels](../fig/L3_thirdplot.png)
 
 > ## Interactivity is baked in to Plotly charts
+>
 > When you have many more lines, the interactive features of Plotly become very useful. 
 > Notice how hovering over a line will tell you more information about that point. 
 > You will also see several options in the upper right corner to further interact with the plot - including saving it as a PNG file!
@@ -124,6 +124,7 @@ fig.show()
 ## Exercises
 
 > ## Visualize Population in Europe
+>
 > Create a plot that visualizes the population of countries in Europe over time.
 > > ## Solution
 > > ~~~
@@ -136,6 +137,7 @@ fig.show()
 {: .challenge}
 
 > ## Visualize Average Life Expectancy in Asia
+>
 > Create a plot that visualizes the average life expectancy of countries in Asia over time.
 > > ## Solution
 > > ~~~
