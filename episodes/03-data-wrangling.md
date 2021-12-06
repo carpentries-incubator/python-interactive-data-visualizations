@@ -21,24 +21,44 @@ Data visualization libraries often expect data to be in a certain format so that
 
 We want to visualize the data in `gapminder_all.csv`. However, this dataset is in a "wide" format - it has many columns, with each year + metric value in it's own column. The unit of observation is the "country" - each country has its own single row.
 
-You can click on the `Data` folder and double click on `gapminder_all.csv` to view this file within Jupyter Lab.
-
-We are going take this very wide dataset and make it very long, so the unit of observation will be each country + year + metric combination, rather than just the country. This process is made much simpler by a couple of functions in the `pandas` library.
-
-> ## Tidy Data
+> ## Open the CSV file within Jupyter Lab
 >
-> The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
+> Click on the `Data` folder in the left-hand navigation pane and then double click on `gapminder_all.csv` to view this file within Jupyter Lab.
 >
-> You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
->
-> Wickham later refined and revised the tidy data philosophy, and published it in the 12th chapter of his open access textbook "R for Data Science" - available [here](https://r4ds.had.co.nz/tidy-data.html). 
->
-> The revised rules are:
->
-> 1. Each variable must have its own column
-> 2. Each observation must have its own row
-> 3. Each value must have its own cell
+> Explore the dataset visually. What does each row represent? What does each column represent? About how many rows and columns are there?
 {: .callout}
+
+We are going take this wide dataset and make it long, so the unit of observation will be each country + year + metric combination, rather than just the country. This process is made much simpler by a couple of functions in the `pandas` library.
+
+## Tidy Data
+
+The term "tidy data" may be most popular in the R ecosystem (the "tidyverse" is a collection of R packages designed around the tidy data philosophy), but it is applicable to all tabular datasets, not matter what programming language you are using to wrangle your data.
+
+You can ready more about the tidy data philosophy in Hadley Wickham's 2014 paper, "Tidy Data", available [here](https://vita.had.co.nz/papers/tidy-data.pdf).
+
+Wickham later refined and revised the tidy data philosophy, and published it in the 12th chapter of his open access textbook "R for Data Science" - available [here](https://r4ds.had.co.nz/tidy-data.html). 
+
+The revised rules are:
+
+1. Each variable must have its own column
+2. Each observation must have its own row
+3. Each value must have its own cell
+
+It might be difficult at first to identify what makes a dataset "untidy", and therefore what you will need to change in order to wrangle the dataset into a tidy shape.
+
+Here are the five most common problems with untidy datasets (Identified in ["Tidy Data"](https://vita.had.co.nz/papers/tidy-data.pdf)):
+
+1. Column headers are values, not variable names
+2. Multiple variables are stored in one column
+3. Variables are stored in both rows and columns
+4. Multiple types of observational units are stored in the same table
+5. A single observational unit is stored in multiple tables
+
+> ## Discuss: how is our dataset untidy?
+>
+> Look again at the file `gapminder_all.csv` you opened in Jupyter Lab. 
+> Which of the 5 most common problems with untidy datasets applies to this dataset?
+{: .discussion}
 
 ## Getting Started
 
@@ -69,6 +89,8 @@ df
 {: .language-python}
 
 ## Melting the dataframe from wide to long
+
+One problem with our dataset is that "column headers are values, not variable names". The type of metric and the year are stuck in our column headers, and we want that information to be stored in rows.
 
 The first function we are going to use to wrangle this dataset is `pd.melt()`. This function's entire purpose to to make wide dataframes into long dataframes.
 
@@ -117,7 +139,9 @@ Just look at that beautiful, long dataframe! Take a closer look to understand ex
 
 ## Splitting a column
 
-But we're not done yet! Take a closer look at the `variable` column. This column contains two pieces of information - the metric and the year. Thankfully, these former column names have a consistent naming scheme, so we can easily split these two pieces of information into two different columns.
+Now that we have melted our datset, we can address another untidy problem: "Multiple variables are stored in one column".
+
+Take a closer look at the `variable` column. This column contains two pieces of information - the metric and the year. Thankfully, these former column names have a consistent naming scheme, so we can easily split these two pieces of information into two different columns.
 
 ~~~
 df_melted[['metric', 'year']] = df_melted['variable'].str.split("_", expand=True)
@@ -134,7 +158,7 @@ df_melted
 
 ## Saving the final dataframe
 
-Now that all of our columns contain the appropriate information, in a tidy/long format, it's time to save our dataframe back to a CSV file. But first, we're going to re-order our columns (and remove the now extra `variable` column) and sort the rows.
+Now that all of our columns contain the appropriate information, in a tidy/long format, it's time to save our dataframe back to a CSV file. But first, let's clean up our datset: we're going to re-order our columns (and remove the now extra `variable` column) and sort the rows.
 
 ~~~
 df_final = df_melted[['country', 'continent', 'year', 'metric', 'value']]
