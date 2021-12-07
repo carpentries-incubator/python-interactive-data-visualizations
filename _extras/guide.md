@@ -16,4 +16,13 @@ It is important to note that this lesson was designed to follow the [Plotting an
 
 If you want to see all of the finished code as it should be after the lesson is completed (.ipynb and .py files), they are available [in the code folder](https://github.com/carpentries-incubator/python-interactive-data-visualizations/tree/gh-pages/code).
 
+### Reset environment before teaching
+
+If you have practiced the lesson prior to teaching and want to reset your environment for teaching you need to:
+- Remove the jupyter kernel `jupyter kernelspec uninstall dataviz`.  You may want to list your kernels first with `jupyter kernelspec list`.
+- Remove the conda environment `conda remove --name dataviz --all`.  Reminder you can use `conda env list` to list all your current environments.
+- Delete or rename your streamlit app.
+- Move, rename, or delete your local `data_viz_workshop` and `interact-with-gapminder-data-app` folders.
+- Move, rename, or delete your github repo.
+
 {% include links.md %}
