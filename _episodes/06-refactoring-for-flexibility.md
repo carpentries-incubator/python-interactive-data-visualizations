@@ -17,8 +17,10 @@ keypoints:
 
 We now have a working Streamlit app. However, it is only displaying one plot, and we can't currently change what that plot is showing. 
 And we know that there is a lot more information to visualize in our dataset!
-So we are going to add in even more interactivity with some widgets. 
-However, before we can add in widgets, we need to refactor our code. Widgets are an interface for users to set a variable to some value. Our code needs to be refactored to use variables instead of "hard-coded" values. 
+So we are going to add in even more interactivity with some widgets.
+Widgets are an interface for users to set a variable to some value.
+For example, we we may want users to choose from a drop down menu widget to control which continent is displayed.
+However, before we can add in widgets, we need to refactor our code to allow for more user flexiblity in what is displayed. Our code needs to be refactored to use variables instead of "hard-coded" values.
 
 For now, we will set these variables (`continent` and `metric` in the code below) to be strings. That means that after refactoring, the app will not actually look any different. However, it will make adding the widgets in much easier - because we will assign those `continent` and `metric` variables to the widget output.
 
