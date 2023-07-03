@@ -163,7 +163,8 @@ We now have a web application that can allow you to share your interactive visua
 
 > ## Add a description
 >
-> After the plot is displayed, add some text describing the plot.
+> After the plot is displayed, add some text describing the plot.  Hint you may want look at the [Streamlit Reference Docs](https://docs.streamlit.io/library/api-reference)
+> to find an appropriate function.
 > > ## Solution
 > > ~~~
 > > st.plotly_chart(fig, use_container_width=True) # this line is already in the app
