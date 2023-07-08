@@ -1,5 +1,7 @@
 # Interactive Data Visualizations in Python
 
+[![DOI](https://zenodo.org/badge/389823879.svg)](https://zenodo.org/badge/latestdoi/389823879)
+
 [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
 
 This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
