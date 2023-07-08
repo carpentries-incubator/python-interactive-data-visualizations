@@ -114,8 +114,8 @@ Our "id" columns are `country` and `continent`. Our "value" columns are all of t
 
 ~~~
 cols = list(df.columns)
-cols.remove('continent')
-cols.remove('country')
+cols.remove("continent")
+cols.remove("country")
 cols
 ~~~
 {: .language-python}
@@ -123,7 +123,7 @@ cols
 Now, we can call `pd.melt()` and pass `cols` rather than typing out the whole list.
 
 ~~~
-df_melted = pd.melt(df, id_vars=['country', 'continent'], value_vars = cols)
+df_melted = pd.melt(df, id_vars=["country", "continent"], value_vars = cols)
 df_melted
 ~~~
 {: .language-python}
@@ -144,7 +144,7 @@ Now that we have melted our datset, we can address another untidy problem: "Mult
 Take a closer look at the `variable` column. This column contains two pieces of information - the metric and the year. Thankfully, these former column names have a consistent naming scheme, so we can easily split these two pieces of information into two different columns.
 
 ~~~
-df_melted[['metric', 'year']] = df_melted['variable'].str.split("_", expand=True)
+df_melted[["metric", "year"]] = df_melted["variable"].str.split("_", expand=True)
 df_melted
 ~~~
 {: .language-python}
@@ -161,7 +161,7 @@ df_melted
 Now that all of our columns contain the appropriate information, in a tidy/long format, it's time to save our dataframe back to a CSV file. But first, let's clean up our datset: we're going to re-order our columns (and remove the now extra `variable` column) and sort the rows.
 
 ~~~
-df_final = df_melted[['country', 'continent', 'year', 'metric', 'value']]
+df_final = df_melted[["country", "continent", "year", "metric", "value"]]
 df_final = df_final.sort_values(by=["continent", "country", "year", "metric"])
 df_final
 ~~~
