@@ -17,11 +17,11 @@ If given the option, choose to Save File in your Desktop folder. If you are not 
 move this zipped file to your Desktop. Finally, double click the zipped file to unzip it.
 You should now have a folder called `data_viz_workshop`. If you open this folder, you will see a file called `environment.yml` and a folder called `Data`.
 
-> ## Create the environment before the workshop to save time
-> Your instructor may tell you to go ahead and create the `dataviz` environment in advance, and start the workshop from Episode 2 if time is short.
-> If so, then go ahead and  create the `dataviz` environment and open Jupyter Lab in the project root directory (`Desktop/data_viz_workshop`). 
-> Follow the directions in [Create a new environment]({{page.root}}/01-create-new-environment)).
-{: .callout}
+## Optional: Create the virtual environment
+
+Creating the environment can be done as a part of setup if learners already have experience in working with virtual environments. This will save time during the workshop itself to focus on other activities.
+
+If your instructor tells you to create the `dataviz` environment in advance, follow the directions in Episode 2, [Create a new environment]({{page.root}}/02-create-new-environment)). Then, you can open Jupyter Lab in the project root directory (e.g. `Desktop/data_viz_workshop`)
 
 ## Create a GitHub account (if you don't already have one)
 
