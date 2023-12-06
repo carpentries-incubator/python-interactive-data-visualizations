@@ -19,7 +19,7 @@ Now that we have our final app, it's time to publish (a.k.a deploy) it so that o
 The first step is to create a new GitHub repository that will contain the code, data, and environment files.
 
 > ## Refresher on creating GitHub repos
-> If you have not created a GitHub repository before or need a refresher, please refer to [this episode on Remotes in GitHub](https://swcarpentry.github.io/git-novice/07-github/index.html) from the Software Carpentries lesson [Version Control with Git](https://swcarpentry.github.io/git-novice/)
+> If you have not created a GitHub repository before or need a refresher, please refer to [this episode on Remotes in GitHub](https://swcarpentry.github.io/git-novice/07-github.html) from the Software Carpentries lesson [Version Control with Git](https://swcarpentry.github.io/git-novice/)
 {: .callout}
 
 Give your repo a descriptive name, like `interact-with-gapminder-data-app`. Make sure that the repo is "Public" (not Private) and check the box to initialize the repo with a README.md.
