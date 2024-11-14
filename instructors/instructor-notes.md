@@ -1,5 +1,5 @@
 ---
-title: "Instructor Notes"
+title: Instructor Notes
 ---
 
 ### If you have limited time
@@ -10,7 +10,7 @@ If you are teaching Episode 2 (Create a New Environment) during the workshop, be
 
 ### This lesson assumes familiarity with python and pandas
 
-It is important to note that this lesson was designed to follow the [Plotting and Programming in Python](http://swcarpentry.github.io/python-novice-gapminder/index.html) lesson.
+It is important to note that this lesson was designed to follow the [Plotting and Programming in Python](https://swcarpentry.github.io/python-novice-gapminder/index.html) lesson.
 
 ### See all of the code
 
@@ -19,10 +19,13 @@ If you want to see all of the finished code as it should be after the lesson is 
 ### Reset environment before teaching
 
 If you have practiced the lesson prior to teaching and want to reset your environment for teaching you need to:
+
 - Remove the jupyter kernel `jupyter kernelspec uninstall dataviz`.  You may want to list your kernels first with `jupyter kernelspec list`.
 - Remove the conda environment `conda remove --name dataviz --all`.  Reminder you can use `conda env list` to list all your current environments.
 - Delete or rename your streamlit app.
 - Move, rename, or delete your local `data_viz_workshop` and `interact-with-gapminder-data-app` folders.
 - Move, rename, or delete your github repo.
 
-{% include links.md %}
+
+
+

@@ -4,15 +4,20 @@ title: Setup
 
 ## Getting the Files
 
-> ## Click the link to download the file
-> [data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip)
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
 
-The dataset we will be using is taken from the [gapminder][gapminder] dataset, 
-just like the [Plotting and Programming in Python](http://swcarpentry.github.io/python-novice-gapminder/) workshop.
+## Click the link to download the file
+
+[data\_viz\_workshop.zip](files/data_viz_workshop.zip)
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+The dataset we will be using is taken from the [gapminder] dataset,
+just like the [Plotting and Programming in Python](https://swcarpentry.github.io/python-novice-gapminder/) workshop.
 We will also be using a special environment, which can be recreated on your machine using [Anaconda][anaconda].
 
-To obtain the dataset and environment, download the file [data_viz_workshop.zip]({{page.root}}/files/data_viz_workshop.zip).
+To obtain the dataset and environment, download the file [data\_viz\_workshop.zip](files/data_viz_workshop.zip).
 If given the option, choose to Save File in your Desktop folder. If you are not given the option to choose where to save the file, then
 move this zipped file to your Desktop. Finally, double click the zipped file to unzip it.
 You should now have a folder called `data_viz_workshop`. If you open this folder, you will see a file called `environment.yml` and a folder called `Data`.
@@ -21,7 +26,7 @@ You should now have a folder called `data_viz_workshop`. If you open this folder
 
 Creating the environment can be done as a part of setup if learners already have experience in working with virtual environments. This will save time during the workshop itself to focus on other activities.
 
-If your instructor tells you to create the `dataviz` environment in advance, follow the directions in Episode 2, [Create a new environment]({{page.root}}/02-create-new-environment)). Then, you can open Jupyter Lab in the project root directory (e.g. `Desktop/data_viz_workshop`)
+If your instructor tells you to create the `dataviz` environment in advance, follow the directions in Episode 2, [Create a new environment](episodes/02-create-new-environment.md)). Then, you can open Jupyter Lab in the project root directory (e.g. `Desktop/data_viz_workshop`)
 
 ## Create a GitHub account (if you don't already have one)
 
@@ -35,19 +40,14 @@ After you have a GitHub account, you should also download GitHub Desktop, so tha
 
 ## Installing Python Using Anaconda
 
-{% include python_install.html %}
+{% include python\_install.html %}
 
 <br>
 
-[anaconda]: https://www.anaconda.com/
-[anaconda-mac]: https://www.anaconda.com/download/#macos
-[anaconda-linux]: https://www.anaconda.com/download/#linux
-[anaconda-windows]: https://www.anaconda.com/download/#windows
+
+
 [gapminder]: https://en.wikipedia.org/wiki/Gapminder_Foundation
-[jupyter]: http://jupyter.org/
-[python]: https://python.org
-[video-mac]: https://www.youtube.com/watch?v=TcSAln46u9U
-[video-windows]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
+[anaconda]: https://www.anaconda.com/
 
 
-{% include links.md %}
+
