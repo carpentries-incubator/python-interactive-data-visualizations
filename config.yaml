@@ -1,3 +1,4 @@
+---
 #------------------------------------------------------------
 # Values for this lesson.
 #------------------------------------------------------------
@@ -10,36 +11,36 @@
 # incubator: The Carpentries Incubator
 # Note that you can also use a custom carpentry type. For more info,
 # see the documentation: https://carpentries.github.io/sandpaper-docs/editing.html
-carpentry: 'incubator'
+carpentry: "incubator"
 
 # Custom carpentry description
 # This will be used as the alt text for the logo
 # carpentry_description: "Custom Carpentry"
 
 # Overall title for pages.
-title: 'Interactive Data Visualizations in Python'
+title: "Interactive Data Visualizations in Python"
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: 
+created: 2021-07-26
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries'
+keywords: "software, data, lesson, The Carpentries"
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'beta'
+life_cycle: "beta"
 
 # License of the lesson materials (recommended CC-BY 4.0)
-license: 'CC-BY 4.0'
+license: "CC-BY 4.0"
 
 # Link to the source repository for this lesson
-source: 'https://github.com/carpentries-incubator/python-interactive-data-visualizations'
+source: "https://github.com/carpentries-incubator/python-interactive-data-visualizations"
 
 # Default branch of your lesson
-branch: 'main'
+branch: "main"
 
 # Who to contact if there are any issues
-contact: 'jenna.jrdn@gmail.com'
+contact: "jenna.jrdn@gmail.com"
 
 # Navigation ------------------------------------------------
 #
@@ -64,32 +65,28 @@ contact: 'jenna.jrdn@gmail.com'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
-- 01-why-interactivity.md
-- 02-create-new-environment.md
-- 03-data-wrangling.md
-- 04-create-visualizations.md
-- 05-create-streamlit-app.md
-- 06-refactoring-for-flexibility.md
-- 07-add-widgets.md
-- 08-publish-your-app.md
+episodes:
+  - 01-why-interactivity.md
+  - 02-create-new-environment.md
+  - 03-data-wrangling.md
+  - 04-create-visualizations.md
+  - 05-create-streamlit-app.md
+  - 06-refactoring-for-flexibility.md
+  - 07-add-widgets.md
+  - 08-publish-your-app.md
 
 # Information for Learners
-learners: 
+learners:
 
 # Information for Instructors
-instructors: 
+instructors:
 
 # Learner Profiles
-profiles: 
+profiles:
 
 # Customisation ---------------------------------------------
 #
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
 
-
 carpentry_description: Lesson Description
-url: 'https://carpentries-incubator.github.io/python-interactive-data-visualizations'
-analytics: carpentries
-lang: en
