@@ -40,14 +40,36 @@ After you have a GitHub account, you should also download GitHub Desktop, so tha
 
 ## Installing Python Using Anaconda
 
-{% include python\_install.html %}
+[Python](https://python.org/) is a popular language for research computing, and great for general-purpose programming as well. Installing all of its research packages individually can be a bit difficult, so we recommend [Anaconda](https://www.anaconda.com/products/individual), an all-in-one installer.
 
-<br>
+Regardless of how you choose to install it, **please make sure you install Python version 3.x** (e.g., 3.6 is fine).
 
+We will teach Python using the [Jupyter Notebook](https://jupyter.org/), a programming environment that runs in a web browser (Jupyter Notebook will be installed by Anaconda). For this to work you will need a reasonably up-to-date browser. The current versions of the Chrome, Safari and Firefox browsers are all [supported](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#browser-compatibility) (some older browsers, including Internet Explorer version 9 and below, are not).
 
+::: tab
+
+### Windows
+
+1. Open https://www.anaconda.com/products/individual#download-section with your web browser.
+1. Download the Anaconda for Windows installer with Python 3. (If you are not sure which version to choose, you probably want the 64-bit Graphical Installer Anaconda3-...-Windows-x86_64.exe)
+1. Install Python 3 by running the Anaconda Installer, using all of the defaults for installation except make sure to check **Add Anaconda to my PATH environment variable.**
+
+### macOS
+
+1. Open https://www.anaconda.com/products/individual#download-section with your web browser.
+1. Download the Anaconda Installer with Python 3 for macOS (you can either use the Graphical or the Command Line Installer).
+1. Install Python 3 by running the Anaconda Installer using all of the defaults for installation.
+
+### Linux
+
+1. Open https://www.anaconda.com/products/individual#download-section with your web browser.
+1. Download the Anaconda Installer with Python 3 for Linux. (The installation requires using the shell. If you aren't comfortable doing the installation yourself stop here and request help at the workshop.)
+1. Open a terminal window and navigate to the directory where the executable is downloaded (e.g., `cd ~/Downloads`).
+1. Type `bash Anaconda3-` and then press <kbd>Tab</kbd> to autocomplete the full file name. The name of file you just downloaded should appear.
+1. Press <kbd>Enter</kbd> (or <kbd>Return</kbd> depending on your keyboard). You will follow the text-only prompts. To move through the text, press <kbd>Spacebar</kbd>. Type `yes` and press enter to approve the license. Press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to approve the default location for the files. Type `yes` and press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to prepend Anaconda to your `PATH` (this makes the Anaconda distribution the default Python).
+1. Close the terminal window.
+:::
 
 [gapminder]: https://en.wikipedia.org/wiki/Gapminder_Foundation
 [anaconda]: https://www.anaconda.com/
-
-
 
