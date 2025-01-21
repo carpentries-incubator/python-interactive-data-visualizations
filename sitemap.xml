@@ -34,7 +34,13 @@
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/aio.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/discuss.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/images.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/index.html</loc>
@@ -73,16 +79,34 @@
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/aio.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/discuss.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-interactive-data-visualizations/profiles.html</loc>
