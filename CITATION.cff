@@ -12,6 +12,7 @@ type: dataset
 authors:
   - given-names: Jenna
     family-names: Jordan
+    orcid: 'https://orcid.org/0000-0001-9246-5355'
   - given-names: Sarah LR
     family-names: Stevens
     email: sarah.stevens@wisc.edu
