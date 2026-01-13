@@ -1,0 +1,43 @@
+cff-version: 1.0.0
+title: Interactive Data Visualizations in Python
+message: >-
+  This workshop lesson is an introduction to making 
+  interactive data visualizations in Python. Learners 
+  will create a new environment using conda, wrangle 
+  data into the proper format using pandas library, 
+  create visualizations using the Plotly Python library, 
+  and display these visualizations and create widgets 
+  using Streamlit.
+type: dataset
+authors:
+  - given-names: Jenna
+    family-names: Jordan
+    orcid: 'https://orcid.org/0000-0001-9246-5355'
+  - given-names: Sarah LR
+    family-names: Stevens
+    email: sarah.stevens@wisc.edu
+    affiliation: University of Wisconsin-Madison
+    orcid: 'https://orcid.org/0000-0002-7040-548X'
+  - given-names: Laurence
+    family-names: Brown
+    orcid: 'https://orcid.org/0000-0001-8116-4100'
+repository-code: >-
+  https://github.com/carpentries-incubator/python-interactive-data-visualizations
+url: >-
+  https://carpentries-incubator.github.io/python-interactive-data-visualizations/
+abstract: >-
+  This workshop lesson is an introduction to making 
+  interactive data visualizations in Python. Learners 
+  will create a new environment using conda, wrangle 
+  data into the proper format using pandas library, 
+  create visualizations using the Plotly Python library, 
+  and display these visualizations and create widgets 
+  using Streamlit.
+keywords:
+  - python
+  - data visualizations
+  - dataviz
+  - lesson
+  - Carpentries
+  - Carpentries Incubator
+license: CC-BY-4.0
