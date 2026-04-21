@@ -6,21 +6,27 @@
 <title>Interactive Data Visualizations in Python: All in One View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
-<script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      config: ["MMLorHTML.js"],
-      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
-      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"],
-      TeX: {
-        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
-      },
-      tex2jax: {
-        inlineMath: [['\\(', '\\)']],
-        displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
-        processEscapes: true
-      }
-    });
-    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="../favicons/incubator/apple-touch-icon.png">
+<script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
+        Jax output/NativeMML is not yet implemented
+        Jax output/PreviewHTML is not yet implemented
+        Extension fast-preview is not yet implemented (but may be in a future release)
+    --><script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+            processEscapes: true,
+            packages: ['base', 'ams', 'noerrors', 'noundefined']
+        },
+        options: {
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+        },
+        loader: {
+            load: ['a11y/assistive-mml', '[tex]/noerrors']
+        }
+    };
+    </script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="../favicons/incubator/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicons/incubator/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../favicons/incubator/favicon-16x16.png">
 <link rel="manifest" href="../favicons/incubator/site.webmanifest">
@@ -47,8 +53,8 @@
       </div>
     </div>
     <div class="selector-container">
-      <div id="theme-selector">
-        <li class="nav-item dropdown" id="theme-button-list">
+      <menu class="theme-selector" id="theme-selector-menu">
+<li class="nav-item dropdown theme-button-list" id="theme-button-list-menu">
           <button class="btn btn-link nav-link px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (auto)">
             <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg><i data-feather="chevron-down"></i>
           </button>
@@ -73,10 +79,8 @@
             </li>
           </ul>
 </li>
-      </div>
-
-
-      <div class="dropdown" id="instructor-dropdown">
+    </menu>
+<div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View <i data-feather="chevron-down"></i>
         </button>
@@ -143,29 +147,18 @@
     <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
-</nav><div class="col-md-12 mobile-title">
-  Interactive Data Visualizations in Python
-</div>
-
-<aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
-    %
-  </div>
-  <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: %" aria-valuenow="" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
-    </div>
-  </div>
-</aside><div class="container">
+</nav><div class="container">
       <div class="row">
         <!-- START: inst/pkgdown/templates/navbar.html -->
 <div id="sidebar-col" class="col-lg-4">
   <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
+      <nav aria-labelledby="flush-collapse-chapters-toggle"><button role="button" aria-label="Collapse" alt="Collapse" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
           <div class="row mobile-row" id="theme-row-mobile">
-            <div class="col" id="theme-selector">
-              <li class="nav-item dropdown" id="theme-button-list">
+            <menu class="col theme-selector" id="theme-selector-sidebar">
+<li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
                 <button class="btn btn-link nav-link px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (auto)">
                   <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg><span class="d-lg-none ms-1" id="bd-theme-text">Toggle Theme</span>
                 </button>
@@ -190,19 +183,19 @@
                   </li>
                 </ul>
 </li>
-            </div>
-          </div>
+            </menu>
+</div>
           <div class="row mobile-row">
             <div class="col">
               <div class="sidenav-view-selector">
-                <div class="accordion accordion-flush" id="accordionFlush9">
+                <div class="accordion accordion-flush" id="accordion-instructor-toggle">
                   <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingNine">
-                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                    <h2 class="accordion-header" id="flush-heading-instructor-toggle">
+                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-instructor-toggle" aria-expanded="false" aria-controls="flush-collapse-instructor-toggle">
                         <i id="eye" aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View
                       </button>
                     </h2>
-                    <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlush2">
+                    <div id="flush-collapse-instructor-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-instructor-toggle">
                       <div class="accordion-body">
                         <a href="../aio.html">Learner View</a>
                       </div>
@@ -220,15 +213,15 @@
 </div>
 <!--/div.mobile-row -->
 
-          <div class="accordion accordion-flush" id="accordionFlush11">
+          <div class="accordion accordion-flush" id="accordion-chapters-toggle">
             <div class="accordion-item">
 
-              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
-                <h2 class="accordion-header chapters" id="flush-headingEleven">
+              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-chapters-toggle" aria-expanded="false" aria-controls="flush-collapse-chapters-toggle">
+                <h2 class="accordion-header chapters" id="flush-heading-chapters-toggle">
                   EPISODES
                 </h2>
               </button>
-              <div id="flush-collapseEleven" class="accordion-collapse show collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlush11">
+              <div id="flush-collapse-chapters-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-chapters-toggle">
 
                 <div class="accordion-body">
                   <div class="accordion accordion-flush" id="accordionFlush1">
@@ -344,14 +337,14 @@
             </div>
 
             <hr class="half-width">
-<div class="accordion accordion-flush lesson-resources" id="accordionFlush12">
+<div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
               <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwelve">
-                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                <h2 class="accordion-header" id="flush-heading-resources-toggle">
+                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-resources-toggle" aria-expanded="false" aria-controls="flush-collapse-resources-toggle">
                     RESOURCES
                   </button>
                 </h2>
-                <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlush12">
+                <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
 <li>
@@ -393,7 +386,7 @@
         <!-- START: inst/pkgdown/templates/content-extra.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <main id="main-content" class="main-content"><div class="container lesson-content">
-        
+        <h1>All in One View</h1>
         
 <section id="aio-01-why-interactivity"><p>Content from <a href="01-why-interactivity.html">Why make interactive visualizations?</a></p>
 <hr>
@@ -628,8 +621,8 @@ the project directory. Then, take a look at the contents.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/data_viz_workshop</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-F</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="bu">cd</span> ~/Desktop/data_viz_workshop</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">ls</span> <span class="at">-F</span></span></code></pre>
 </div>
 <div id="ls--f" class="callout">
 <div class="callout-square">
@@ -658,7 +651,7 @@ with:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">conda</span> env list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">conda</span> env list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -681,7 +674,7 @@ line:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">--file</span> environment.yml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">conda</span> env create <span class="at">--file</span> environment.yml</span></code></pre>
 </div>
 <p>This process can take a while - about 2-3 minutes.</p>
 <p>After the environment is created, go ahead and activate it. You can
@@ -690,8 +683,8 @@ listed in the file and all of their dependencies.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">conda</span> activate dataviz</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">conda</span> list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">conda</span> activate dataviz</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="ex">conda</span> list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -712,13 +705,13 @@ should be made available as a kernel in Jupyter Lab.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> dataviz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> dataviz</span></code></pre>
 </div>
 <p>Finally, we can go ahead and start Jupyter Lab</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
 </div>
 <div id="alternatives-to-anaconda" class="callout discussion">
 <div class="callout-square">
@@ -751,9 +744,9 @@ use that name for future steps.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> dataviz python=3.9</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">conda</span> activate dataviz</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">conda</span> create <span class="at">--name</span> dataviz python=3.9</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="ex">conda</span> activate dataviz</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span></code></pre>
 </div>
 <p>Next, you will need to install the top-level packages we will need
 for the workshop. Installing these packages will also install their
@@ -761,10 +754,10 @@ dependencies.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge streamlit</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> plotly plotly=5.1.0</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> plotly plotly-geo=1.0.0</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge jupyterlab</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge streamlit</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">conda</span> install <span class="at">-c</span> plotly plotly=5.1.0</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a><span class="ex">conda</span> install <span class="at">-c</span> plotly plotly-geo=1.0.0</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge jupyterlab</span></code></pre>
 </div>
 <p>Note that this process will take a lot longer than installing from
 <code>environment.yml</code>, and you will also need to type
@@ -942,9 +935,9 @@ can call the <code>df</code> variable to display it.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_all.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>df</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_all.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>df</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="melting-the-dataframe-from-wide-to-long">Melting the dataframe from wide to long<a class="anchor" aria-label="anchor" href="#melting-the-dataframe-from-wide-to-long"></a>
 </h2>
@@ -976,7 +969,7 @@ Launcher.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>df.columns</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>df.columns</span></code></pre>
 </div>
 <p><code>pd.melt()</code> requires us to specify at least 3 arguments:
 the dataframe (<code>frame</code>), the “id” columns
@@ -990,18 +983,18 @@ columns.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>cols <span class="op">=</span> <span class="bu">list</span>(df.columns)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>cols.remove(<span class="st">"continent"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>cols.remove(<span class="st">"country"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>cols</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>cols <span class="op">=</span> <span class="bu">list</span>(df.columns)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>cols.remove(<span class="st">"continent"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a>cols.remove(<span class="st">"country"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>cols</span></code></pre>
 </div>
 <p>Now, we can call <code>pd.melt()</code> and pass <code>cols</code>
 rather than typing out the whole list.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>df_melted <span class="op">=</span> pd.melt(df, id_vars<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"continent"</span>], value_vars <span class="op">=</span> cols)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>df_melted</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>df_melted <span class="op">=</span> pd.melt(df, id_vars<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"continent"</span>], value_vars <span class="op">=</span> cols)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>df_melted</span></code></pre>
 </div>
 <div id="new-dataframe-variable-names" class="callout">
 <div class="callout-square">
@@ -1038,8 +1031,8 @@ different columns.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>df_melted[[<span class="st">"metric"</span>, <span class="st">"year"</span>]] <span class="op">=</span> df_melted[<span class="st">"variable"</span>].<span class="bu">str</span>.split(<span class="st">"_"</span>, expand<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>df_melted</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>df_melted[[<span class="st">"metric"</span>, <span class="st">"year"</span>]] <span class="op">=</span> df_melted[<span class="st">"variable"</span>].<span class="bu">str</span>.split(<span class="st">"_"</span>, expand<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>df_melted</span></code></pre>
 </div>
 <div id="wide-vs-long-data" class="callout discussion">
 <div class="callout-square">
@@ -1066,15 +1059,15 @@ the rows.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>df_final <span class="op">=</span> df_melted[[<span class="st">"country"</span>, <span class="st">"continent"</span>, <span class="st">"year"</span>, <span class="st">"metric"</span>, <span class="st">"value"</span>]]</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>df_final <span class="op">=</span> df_final.sort_values(by<span class="op">=</span>[<span class="st">"continent"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"metric"</span>])</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>df_final</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>df_final <span class="op">=</span> df_melted[[<span class="st">"country"</span>, <span class="st">"continent"</span>, <span class="st">"year"</span>, <span class="st">"metric"</span>, <span class="st">"value"</span>]]</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>df_final <span class="op">=</span> df_final.sort_values(by<span class="op">=</span>[<span class="st">"continent"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"metric"</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>df_final</span></code></pre>
 </div>
 <p>Finally, we will export the dataframe to a CSV file.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>df_final.to_csv(<span class="st">"Data/gapminder_tidy.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>df_final.to_csv(<span class="st">"Data/gapminder_tidy.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
 <p>We set the index to False so that the index column does not get saved
 to the CSV file.</p>
@@ -1199,11 +1192,11 @@ our dataframe.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>df</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>df</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="creating-our-first-plot">Creating our first plot<a class="anchor" aria-label="anchor" href="#creating-our-first-plot"></a>
 </h2>
@@ -1222,7 +1215,7 @@ visualization. That means we need to filter for rows where the
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>df.query(<span class="st">"country=='New Zealand'"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>df.query(<span class="st">"country=='New Zealand'"</span>)</span></code></pre>
 </div>
 <p>This will select all of the rows where <code>country</code> is “New
 Zealand”. We can add our second condition by either chaining another
@@ -1231,15 +1224,15 @@ the same <code>query()</code> function.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>df.query(<span class="st">"country=='New Zealand'"</span>).query(<span class="st">"metric=='gdpPercap'"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>df.query(<span class="st">"country=='New Zealand' &amp; metric=='gdpPercap'"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>df.query(<span class="st">"country=='New Zealand'"</span>).query(<span class="st">"metric=='gdpPercap'"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>df.query(<span class="st">"country=='New Zealand' &amp; metric=='gdpPercap'"</span>)</span></code></pre>
 </div>
 <p>Let’s make sure to save that filtered dataframe to a new
 variable.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>df_gdp_nz <span class="op">=</span> df.query(<span class="st">"country=='New Zealand' &amp; metric=='gdpPercap'"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>df_gdp_nz <span class="op">=</span> df.query(<span class="st">"country=='New Zealand' &amp; metric=='gdpPercap'"</span>)</span></code></pre>
 </div>
 <p>Now we can pass this dataframe to the <code>px.line()</code>
 function. At a minimum, we need to tell the function what dataframe to
@@ -1248,8 +1241,8 @@ axis.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_gdp_nz, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>fig <span class="op">=</span> px.line(df_gdp_nz, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>fig.show()</span></code></pre>
 </div>
 <figure><img src="../fig/L3_firstplot.png" alt="Plot of New Zealand's GDP over time" class="figure mx-auto d-block"></figure><p>There it is! Our first line plot.</p>
 </section><section><h2 class="section-heading" id="when-you-want-to-compare---adding-more-lines-and-labels">When you want to compare - adding more lines and labels<a class="anchor" aria-label="anchor" href="#when-you-want-to-compare---adding-more-lines-and-labels"></a>
@@ -1262,25 +1255,25 @@ This time, we will specify the <code>continent</code> as “Oceania”.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>df_gdp_o</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>df_gdp_o</span></code></pre>
 </div>
 <p>Now, we will create another figure, but this time we need to pass an
 additional parameter: <code>color</code>.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a>fig.show()</span></code></pre>
 </div>
 <figure><img src="../fig/L3_secondplot.png" alt="Plot of Oceania's GDP over time" class="figure mx-auto d-block"></figure><p>Great! This already looking better. But we should fix that y-axis
 label and add a title.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>fig.show()</span></code></pre>
 </div>
 <figure><img src="../fig/L3_thirdplot.png" alt="Plot of Oceania's GDP over time with correct labels" class="figure mx-auto d-block"></figure><div id="interactivity-is-baked-in-to-plotly-charts" class="callout">
 <div class="callout-square">
@@ -1325,9 +1318,9 @@ over time.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>df_pop_eu <span class="op">=</span> df.query(<span class="st">"continent=='Europe' &amp; metric=='pop'"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_pop_eu, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> <span class="st">"Population in Europe"</span>, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"Population"</span>})</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a>df_pop_eu <span class="op">=</span> df.query(<span class="st">"continent=='Europe' &amp; metric=='pop'"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>fig <span class="op">=</span> px.line(df_pop_eu, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> <span class="st">"Population in Europe"</span>, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"Population"</span>})</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>fig.show()</span></code></pre>
 </div>
 </div>
 </div>
@@ -1356,9 +1349,9 @@ countries in Asia over time.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>df_le_as <span class="op">=</span> df.query(<span class="st">"continent=='Asia' &amp; metric=='lifeExp'"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_le_as, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> <span class="st">"Life Expectancy in Asia"</span>, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"Average Life Expectancy"</span>})</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>df_le_as <span class="op">=</span> df.query(<span class="st">"continent=='Asia' &amp; metric=='lifeExp'"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>fig <span class="op">=</span> px.line(df_le_as, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> <span class="st">"Life Expectancy in Asia"</span>, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"Average Life Expectancy"</span>})</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a>fig.show()</span></code></pre>
 </div>
 </div>
 </div>
@@ -1440,9 +1433,9 @@ save the file again.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code></pre>
 </div>
 <p>Next, go back to the Launcher and click on “Terminal” under “Other”.
 This will launch a terminal window within Jupyter Lab.</p>
@@ -1451,7 +1444,7 @@ currently in your project root.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="bu">pwd</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1463,7 +1456,7 @@ and directories.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ls</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">ls</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1476,7 +1469,7 @@ should be a * next to <code>dataviz</code>.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">conda</span> env list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">conda</span> env list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1490,7 +1483,7 @@ dataviz               *  /opt/anaconda3/envs/dataviz</code></pre>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">conda</span> activate dataviz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">conda</span> activate dataviz</span></code></pre>
 </div>
 <p>Now that we know we are in the right place and have the right
 environment (the one with streamlit installed), we are going to start
@@ -1498,7 +1491,7 @@ the Streamlit app.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">streamlit</span> run app.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">streamlit</span> run app.py</span></code></pre>
 </div>
 <p>This will launch our app in a new tab. Right now, the app is empty.
 So let’s add some content!</p>
@@ -1511,7 +1504,7 @@ title:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span></code></pre>
 </div>
 <p>You can make this title whatever you want. Save the file, and go back
 to the brower tab with our Streamlit app. Notice the prompt in the upper
@@ -1544,12 +1537,12 @@ Streamlit app: <code>st.plotly_chart()</code></p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>st.plotly_chart(fig)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1" aria-label="code-block-11-6"></a>st.plotly_chart(fig)</span></code></pre>
 </div>
 <p>Save <code>app.py</code>, switch over to the Streamlit app, and click
 “Rerun”. Now we can see our Oceania GDP line chart!</p>
@@ -1563,19 +1556,19 @@ argument to our display function:
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1" aria-label="code-block-12-6"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1" aria-label="code-block-12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1" aria-label="code-block-12-8"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1" aria-label="code-block-12-9"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1" aria-label="code-block-12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1" aria-label="code-block-12-11"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1" aria-label="code-block-12-12"></a>fig <span class="op">=</span> px.line(df_gdp_o, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1" aria-label="code-block-12-13"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 <p>You know the drill! Save, switch over to the Streamlit app, and click
 “Rerun”.</p>
@@ -1603,13 +1596,13 @@ Reference Docs</a> to find an appropriate function.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>) <span class="co"># this line is already in the app</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>st.markdown(<span class="st">"This plot shows the GDP Per Capita for countries in Oceania."</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>) <span class="co"># this line is already in the app</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a>st.markdown(<span class="st">"This plot shows the GDP Per Capita for countries in Oceania."</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1633,12 +1626,12 @@ generate the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>st.dataframe(df_gdp_o) <span class="co"># df_gdp_o is defined in the code created in this lesson</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a>st.dataframe(df_gdp_o) <span class="co"># df_gdp_o is defined in the code created in this lesson</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1743,7 +1736,7 @@ and the continent (Oceania).</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a>df_gdp_o <span class="op">=</span> df.query(<span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span>)</span></code></pre>
 </div>
 <p>Notice that what is passed to <code>df.query()</code> is simply a
 string. Right now, the specific values of “Oceania” and “gdpPercap” are
@@ -1769,14 +1762,14 @@ Try out this code in a cell in your Jupyter Notebook.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Oceania"</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"gdpPercap"</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>old_query <span class="op">=</span> <span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>new_query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="bu">print</span>(old_query)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="bu">print</span>(new_query)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>continent <span class="op">=</span> <span class="st">"Oceania"</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>metric <span class="op">=</span> <span class="st">"gdpPercap"</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a>old_query <span class="op">=</span> <span class="st">"continent=='Oceania' &amp; metric=='gdpPercap'"</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>new_query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="bu">print</span>(old_query)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="bu">print</span>(new_query)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1791,12 +1784,12 @@ Go ahead and try it!</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="bu">print</span>(query)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="bu">print</span>(query)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1811,15 +1804,15 @@ Jupyter Notebook)</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>df_filtered <span class="op">=</span> df.query(query)</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>df_filtered <span class="op">=</span> df.query(query)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a>title <span class="op">=</span> <span class="st">"GDP for countries in Oceania"</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="st">"GDP Percap"</span>})</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a>fig.show()</span></code></pre>
 </div>
 <figure><img src="../fig/L5_firstplot.png" alt="Plot of Europe's population over time with wrong labels" class="figure mx-auto d-block"></figure><p>Something about this plot is funky… do you notice any other places
 where we need to incorporate f-Strings?</p>
@@ -1827,14 +1820,14 @@ where we need to incorporate f-Strings?</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>labels <span class="op">=</span> {<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">"</span>}</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="bu">print</span>(title)</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="bu">print</span>(labels[<span class="st">"value"</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>labels <span class="op">=</span> {<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">"</span>}</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a><span class="bu">print</span>(title)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a><span class="bu">print</span>(labels[<span class="st">"value"</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1846,15 +1839,15 @@ pop</code></pre>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>df_filtered <span class="op">=</span> df.query(query)</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">"</span>})</span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a>df_filtered <span class="op">=</span> df.query(query)</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">"</span>})</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a>fig.show()</span></code></pre>
 </div>
 <figure><img src="../fig/L5_secondplot.png" alt="Plot of Europe's population over time with correct labels" class="figure mx-auto d-block"></figure><p>There’s just one more thing to tweak. “gdpPercap”, “lifeExp”, and
 “pop” aren’t the prettiest labels. Let’s map them to more
@@ -1863,23 +1856,23 @@ dictionary within our f-strings:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span></code></pre>
 </div>
 <p>Now, here’s our final code:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>df_filtered <span class="op">=</span> df.query(query)</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a>df_filtered <span class="op">=</span> df.query(query)</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1" aria-label="code-block-12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1" aria-label="code-block-12-7"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1" aria-label="code-block-12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1" aria-label="code-block-12-9"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1" aria-label="code-block-12-10"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1" aria-label="code-block-12-11"></a>fig.show()</span></code></pre>
 </div>
 <figure><img src="../fig/L5_thirdplot.png" alt="Plot of Europe's population over time with better labels" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="getting-lists-of-possible-values">Getting lists of possible values<a class="anchor" aria-label="anchor" href="#getting-lists-of-possible-values"></a>
 </h2>
@@ -1891,7 +1884,7 @@ select from valid options. To do this, we will use pandas’
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>df[<span class="st">'continent'</span>].unique()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a>df[<span class="st">'continent'</span>].unique()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1904,11 +1897,11 @@ variable, and do the same thing for <code>metric</code>.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="bu">print</span>(continent_list)</span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="bu">print</span>(metric_list)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1" aria-label="code-block-15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1" aria-label="code-block-15-4"></a><span class="bu">print</span>(continent_list)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1" aria-label="code-block-15-5"></a><span class="bu">print</span>(metric_list)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1925,29 +1918,29 @@ over to our <code>app.py</code> file, so that it is like this:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>df_filtered <span class="op">=</span> df.query(query)</span>
-<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
-<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
-<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1" aria-label="code-block-17-3"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1" aria-label="code-block-17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1" aria-label="code-block-17-5"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1" aria-label="code-block-17-6"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1" aria-label="code-block-17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1" aria-label="code-block-17-8"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1" aria-label="code-block-17-9"></a></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1" aria-label="code-block-17-10"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1" aria-label="code-block-17-11"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1" aria-label="code-block-17-12"></a></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1" aria-label="code-block-17-13"></a>continent <span class="op">=</span> <span class="st">"Europe"</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1" aria-label="code-block-17-14"></a>metric <span class="op">=</span> <span class="st">"pop"</span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1" aria-label="code-block-17-15"></a></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1" aria-label="code-block-17-16"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1" aria-label="code-block-17-17"></a>df_filtered <span class="op">=</span> df.query(query)</span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1" aria-label="code-block-17-18"></a></span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1" aria-label="code-block-17-19"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1" aria-label="code-block-17-20"></a></span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1" aria-label="code-block-17-21"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1" aria-label="code-block-17-22"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1" aria-label="code-block-17-23"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/streamlit_app_lesson5fin.png" alt="Streamlit app after this lesson" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="exercises">Exercises<a class="anchor" aria-label="anchor" href="#exercises"></a>
 </h2>
@@ -1971,12 +1964,12 @@ plot</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>st.markdown(<span class="ss">f"This plot shows the </span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">."</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a>st.markdown(<span class="ss">f"This plot shows the </span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">."</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -2002,14 +1995,14 @@ variable is set to True.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>show_data <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="cf">if</span> show_data:</span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>    st.dataframe(df_filtered)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a>show_data <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="cf">if</span> show_data:</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1" aria-label="code-block-19-3"></a>    st.dataframe(df_filtered)</span></code></pre>
 </div>
 </div>
 </div>
@@ -2104,7 +2097,7 @@ widget.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a>continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span></code></pre>
 </div>
 <p>The <code>st.selectbox()</code> function requires you to define a
 label (what will display in the app next to the widget) and the options
@@ -2116,35 +2109,35 @@ list of all possible metric values.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a>metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
 </div>
 <p>Your app should now look like this:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>df_filtered <span class="op">=</span> df.query(query)</span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a>continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a>metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1" aria-label="code-block-3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1" aria-label="code-block-3-16"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1" aria-label="code-block-3-17"></a>df_filtered <span class="op">=</span> df.query(query)</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1" aria-label="code-block-3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1" aria-label="code-block-3-19"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1" aria-label="code-block-3-20"></a></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1" aria-label="code-block-3-21"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1" aria-label="code-block-3-22"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1" aria-label="code-block-3-23"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 <p>Go ahead and save the <code>app.py</code> file, click “Rerun” in the
 Streamlit app, and experiment with how the widgets can affect your
@@ -2159,27 +2152,27 @@ widget definition, like this:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>continent <span class="op">=</span> st.sidebar.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>metric <span class="op">=</span> st.sidebar.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>continent <span class="op">=</span> st.sidebar.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>metric <span class="op">=</span> st.sidebar.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
 </div>
 <p>The other way is to place the variables within a
 <code>with st.sidebar:</code> statement, like this:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>    continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a>    metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
 </div>
 <p>The second option lets us also add some other things to the sidebar,
 and clearly organize it, like this:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    st.subheader(<span class="st">"Configure the plot"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    st.subheader(<span class="st">"Configure the plot"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>    continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>    metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list)</span></code></pre>
 </div>
 <figure><img src="../fig/streamlit_app_lesson6_2.png" alt="Streamlit app after adding sidebar" class="figure mx-auto d-block"></figure><p>There is one last thing we should do to before we have our final app.
 Notice how the widget options for “Choose a metric” aren’t our nicely
@@ -2192,12 +2185,12 @@ these “raw” values to their “pretty” equivalents.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="kw">def</span> format_metric(metric_raw):</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    <span class="cf">return</span> metric_labels[metric_raw]</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list, format_func<span class="op">=</span>format_metric)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="kw">def</span> format_metric(metric_raw):</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>    <span class="cf">return</span> metric_labels[metric_raw]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a>metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list, format_func<span class="op">=</span>format_metric)</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="the-final-app">The final app<a class="anchor" aria-label="anchor" href="#the-final-app"></a>
 </h2>
@@ -2209,46 +2202,46 @@ later when we want to pick up the project again!</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># set up the app with wide view preset and a title</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># import our data as a pandas dataframe</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># get a list of all possible continents and metrics, for the widgets</span></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># map the actual data values to more readable strings</span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># function to be used in widget argument format_func that maps metric values to readable labels, using dict above</span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="kw">def</span> format_metric(metric_raw):</span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>    <span class="cf">return</span> metric_labels[metric_raw]</span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co"># put all widgets in sidebar and have a subtitle</span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a>    st.subheader(<span class="st">"Configure the plot"</span>)</span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a>    <span class="co"># widget to choose which continent to display</span></span>
-<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a>    continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
-<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a>    <span class="co"># widget to choose which metric to display</span></span>
-<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a>    metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list, format_func<span class="op">=</span>format_metric)</span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co"># use selected values from widgets to filter dataset down to only the rows we need</span></span>
-<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a>df_filtered <span class="op">=</span> df.query(query)</span>
-<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a></span>
-<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co"># create the plot</span></span>
-<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
-<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a></span>
-<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a><span class="co"># display the plot</span></span>
-<span id="cb8-40"><a href="#cb8-40" tabindex="-1"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a><span class="co"># set up the app with wide view preset and a title</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>st.title(<span class="st">"Interact with Gapminder Data"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a><span class="co"># import our data as a pandas dataframe</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a><span class="co"># get a list of all possible continents and metrics, for the widgets</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a>continent_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'continent'</span>].unique())</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a>metric_list <span class="op">=</span> <span class="bu">list</span>(df[<span class="st">'metric'</span>].unique())</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1" aria-label="code-block-8-15"></a></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1" aria-label="code-block-8-16"></a><span class="co"># map the actual data values to more readable strings</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1" aria-label="code-block-8-17"></a>metric_labels <span class="op">=</span> {<span class="st">"gdpPercap"</span>: <span class="st">"GDP Per Capita"</span>, <span class="st">"lifeExp"</span>: <span class="st">"Average Life Expectancy"</span>, <span class="st">"pop"</span>: <span class="st">"Population"</span>}</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1" aria-label="code-block-8-18"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1" aria-label="code-block-8-19"></a><span class="co"># function to be used in widget argument format_func that maps metric values to readable labels, using dict above</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1" aria-label="code-block-8-20"></a><span class="kw">def</span> format_metric(metric_raw):</span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1" aria-label="code-block-8-21"></a>    <span class="cf">return</span> metric_labels[metric_raw]</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1" aria-label="code-block-8-22"></a></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1" aria-label="code-block-8-23"></a><span class="co"># put all widgets in sidebar and have a subtitle</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1" aria-label="code-block-8-24"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1" aria-label="code-block-8-25"></a>    st.subheader(<span class="st">"Configure the plot"</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1" aria-label="code-block-8-26"></a>    <span class="co"># widget to choose which continent to display</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1" aria-label="code-block-8-27"></a>    continent <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a continent"</span>, options <span class="op">=</span> continent_list)</span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1" aria-label="code-block-8-28"></a>    <span class="co"># widget to choose which metric to display</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1" aria-label="code-block-8-29"></a>    metric <span class="op">=</span> st.selectbox(label <span class="op">=</span> <span class="st">"Choose a metric"</span>, options <span class="op">=</span> metric_list, format_func<span class="op">=</span>format_metric)</span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1" aria-label="code-block-8-30"></a></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1" aria-label="code-block-8-31"></a><span class="co"># use selected values from widgets to filter dataset down to only the rows we need</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1" aria-label="code-block-8-32"></a>query <span class="op">=</span> <span class="ss">f"continent=='</span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">' &amp; metric=='</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1" aria-label="code-block-8-33"></a>df_filtered <span class="op">=</span> df.query(query)</span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1" aria-label="code-block-8-34"></a></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1" aria-label="code-block-8-35"></a><span class="co"># create the plot</span></span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1" aria-label="code-block-8-36"></a>title <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> for countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1" aria-label="code-block-8-37"></a>fig <span class="op">=</span> px.line(df_filtered, x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"value"</span>, color <span class="op">=</span> <span class="st">"country"</span>, title <span class="op">=</span> title, labels<span class="op">=</span>{<span class="st">"value"</span>: <span class="ss">f"</span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss">"</span>})</span>
+<span id="cb8-38"><a href="#cb8-38" tabindex="-1" aria-label="code-block-8-38"></a></span>
+<span id="cb8-39"><a href="#cb8-39" tabindex="-1" aria-label="code-block-8-39"></a><span class="co"># display the plot</span></span>
+<span id="cb8-40"><a href="#cb8-40" tabindex="-1" aria-label="code-block-8-40"></a>st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 <p>Save, Rerun, and… Share!</p>
 <figure><img src="../fig/streamlit_app_lesson6_3.png" alt="Final Streamlit app" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="exercises">Exercises<a class="anchor" aria-label="anchor" href="#exercises"></a>
@@ -2280,11 +2273,11 @@ data.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    show_data <span class="op">=</span> st.checkbox(label <span class="op">=</span> <span class="st">"Show the data used to generate this plot"</span>, value <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">if</span> show_data:</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    st.dataframe(df_filtered)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>    show_data <span class="op">=</span> st.checkbox(label <span class="op">=</span> <span class="st">"Show the data used to generate this plot"</span>, value <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="cf">if</span> show_data:</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>    st.dataframe(df_filtered)</span></code></pre>
 </div>
 </div>
 </div>
@@ -2314,12 +2307,12 @@ displayed on the plot.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>countries_list <span class="op">=</span> <span class="bu">list</span>(df_filtered[<span class="st">'country'</span>].unique())</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    countries <span class="op">=</span> st.multiselect(label <span class="op">=</span> <span class="st">"Which countries should be plotted?"</span>, options <span class="op">=</span> countries_list, default <span class="op">=</span> countries_list)</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>df_filtered <span class="op">=</span> df_filtered[df_filtered.country.isin(countries)]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a>countries_list <span class="op">=</span> <span class="bu">list</span>(df_filtered[<span class="st">'country'</span>].unique())</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>    countries <span class="op">=</span> st.multiselect(label <span class="op">=</span> <span class="st">"Which countries should be plotted?"</span>, options <span class="op">=</span> countries_list, default <span class="op">=</span> countries_list)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a>df_filtered <span class="op">=</span> df_filtered[df_filtered.country.isin(countries)]</span></code></pre>
 </div>
 </div>
 </div>
@@ -2349,13 +2342,13 @@ be displayed on the plot.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>year_min <span class="op">=</span> <span class="bu">int</span>(df_filtered[<span class="st">'year'</span>].<span class="bu">min</span>())</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>year_max <span class="op">=</span> <span class="bu">int</span>(df_filtered[<span class="st">'year'</span>].<span class="bu">max</span>())</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    years <span class="op">=</span> st.slider(label <span class="op">=</span> <span class="st">"What years should be plotted?"</span>, min_value <span class="op">=</span> year_min, max_value <span class="op">=</span> year_max, value <span class="op">=</span> (year_min, year_max))</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>df_filtered <span class="op">=</span> df_filtered[(df_filtered.year <span class="op">&gt;=</span> years[<span class="dv">0</span>]) <span class="op">&amp;</span> (df_filtered.year <span class="op">&lt;=</span> years[<span class="dv">1</span>])]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>year_min <span class="op">=</span> <span class="bu">int</span>(df_filtered[<span class="st">'year'</span>].<span class="bu">min</span>())</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>year_max <span class="op">=</span> <span class="bu">int</span>(df_filtered[<span class="st">'year'</span>].<span class="bu">max</span>())</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a>    years <span class="op">=</span> st.slider(label <span class="op">=</span> <span class="st">"What years should be plotted?"</span>, min_value <span class="op">=</span> year_min, max_value <span class="op">=</span> year_max, value <span class="op">=</span> (year_min, year_max))</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1" aria-label="code-block-11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1" aria-label="code-block-11-7"></a>df_filtered <span class="op">=</span> df_filtered[(df_filtered.year <span class="op">&gt;=</span> years[<span class="dv">0</span>]) <span class="op">&amp;</span> (df_filtered.year <span class="op">&lt;=</span> years[<span class="dv">1</span>])]</span></code></pre>
 </div>
 </div>
 </div>
@@ -2385,7 +2378,7 @@ specified by the newly added widgets.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>st.markdown(<span class="ss">f"This plot shows the </span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> from </span><span class="sc">{</span>years[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>years[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> for the following countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="st">', '</span><span class="sc">.</span>join(countries)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a>st.markdown(<span class="ss">f"This plot shows the </span><span class="sc">{</span>metric_labels[metric]<span class="sc">}</span><span class="ss"> from </span><span class="sc">{</span>years[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>years[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> for the following countries in </span><span class="sc">{</span>continent<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="st">', '</span><span class="sc">.</span>join(countries)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -2488,7 +2481,7 @@ our data with the line:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/gapminder_tidy.csv"</span>)</span></code></pre>
 </div>
 <p>So, we also need to make sure to include the <code>Data</code> folder
 and the <code>gapminder_tidy.csv</code> file inside of it.</p>
@@ -2505,9 +2498,9 @@ copy the relevant files with:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">cp</span> ~/Desktop/data_viz_workshop/app.py ~/Documents/GitHub/interact-with-gapminder-data-app/app.py</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> ~/Documents/GitHub/interact-with-gapminder-data-app/Data</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cp</span> ~/Desktop/data_viz_workshop/Data/gapminder_tidy.csv ~/Documents/GitHub/interact-with-gapminder-data-app/Data/gapminder_tidy.csv</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">cp</span> ~/Desktop/data_viz_workshop/app.py ~/Documents/GitHub/interact-with-gapminder-data-app/app.py</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">mkdir</span> ~/Documents/GitHub/interact-with-gapminder-data-app/Data</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="fu">cp</span> ~/Desktop/data_viz_workshop/Data/gapminder_tidy.csv ~/Documents/GitHub/interact-with-gapminder-data-app/Data/gapminder_tidy.csv</span></code></pre>
 </div>
 <p>Your interact-with-gapminder-data-app folder should now look
 like:</p>
@@ -2670,7 +2663,7 @@ environment files</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.0)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -2693,8 +2686,8 @@ environment files</li>
   "url": "https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/aio.html",
   "identifier": "https://carpentries-incubator.github.io/python-interactive-data-visualizations/instructor/aio.html",
   "dateCreated": "2021-07-26",
-  "dateModified": "2026-04-14",
-  "datePublished": "2026-04-14"
+  "dateModified": "2026-04-21",
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
